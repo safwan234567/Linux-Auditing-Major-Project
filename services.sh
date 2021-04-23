@@ -16,6 +16,12 @@ if [[ $chronycheck = 'package chrony is not installed' ]]
 then
 	echo Fail: chrony is not installed
 fi
+echo
+x11check=$(rpm -qa xorg-x11*)
+if [[ -n $x11check ]]
+then
+	echo "Fail: X Window System is installed (GUI)"
+fi
 
 services=(rsyncd avahi-daemon snmpd squid smb dovecot httpd vsftpd named nfs rpcbind slapd dhcpd cups ypserv)
 for s in "${services[@]}"
