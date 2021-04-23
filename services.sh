@@ -16,7 +16,7 @@ if [[ $chronycheck = 'package chrony is not installed' ]]
 then
 	echo Fail: chrony is not installed
 fi
-echo
+
 x11check=$(rpm -qa xorg-x11*)
 if [[ -n $x11check ]]
 then
