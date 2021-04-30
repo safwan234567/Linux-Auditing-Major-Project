@@ -22,13 +22,20 @@ if [[ -n $x11check ]]
 then
 	echo "Fail: X Window System is installed (GUI)"
 fi
-
+n=3
 services=(rsyncd avahi-daemon snmpd squid smb dovecot httpd vsftpd named nfs rpcbind slapd dhcpd cups ypserv)
 for s in "${services[@]}"
 do
-	if [[ `systemctl is-enabled $s 2>/dev/null` = 'enabled' ]]
+	servicetest=$(systemctl is-enabled $s 2>/dev/null)
+	if [[ "$servicetest"  = 'enabled' ]]
 	then
-		echo Fail: $s is enabled
+		echo Fail: 2.2.$n $s is enabled
+		echo Run the following command to disable $s: systemctl --now disable $s
+		n=$(($n + 1))
+	
+	else
+		echo "$n" > /dev/null
+		n=$(($n + 1))
 	fi
 done
 
@@ -39,12 +46,19 @@ then
 fi
 echo
 echo 2.3 Service Clients
+n=1
 serviceclients=(ypbind telnet openldap-clients)
-
 for s in "${serviceclients[@]}"
 do
 	if [[ -z `rpm -q $s | grep 'is not installed'` ]]
 	then
-		echo Fail: $s is installed
+		echo Fail: 2.3.$n $s is installed
+		n=$(($n + 1))
+        else
+                echo "$n" > /dev/null
+                n=$(($n + 1))
+
 	fi
 done
+
+
