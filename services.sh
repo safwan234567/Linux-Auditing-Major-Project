@@ -5,7 +5,7 @@ echo 2.1 inetd Services
 xinetdcheck=$(rpm -q xinetd)
 if [[ $xinetdcheck != 'package xinetd is not installed' ]]
 then
-	echo Fail: $xinetdcheck is installed
+	echo Fail: 2.1.1 $xinetdcheck is installed. 
 fi
 
 echo
@@ -14,13 +14,13 @@ echo 2.2 Time Synchronisation
 chronycheck=$(rpm -q chrony)
 if [[ $chronycheck = 'package chrony is not installed' ]]
 then
-	echo Fail: chrony is not installed
+	echo Fail: 2.2.1.1 chrony is not installed
 fi
 
 x11check=$(rpm -qa xorg-x11*)
 if [[ -n $x11check ]]
 then
-	echo "Fail: X Window System is installed (GUI)"
+	echo "Fail: 2.2.2 X Window System is installed (GUI)"
 fi
 n=3
 services=(rsyncd avahi-daemon snmpd squid smb dovecot httpd vsftpd named nfs rpcbind slapd dhcpd cups ypserv)
@@ -42,7 +42,7 @@ done
 localonlymtatest=$(ss -lntu | grep -E ':25\s' | grep -E -v '\s(127.0.0.1|::1):25\s')
 if [[ -n $localonlymtatest ]]
 then
-	echo Fail: Mail transfer agent is not configured for local-only mode
+	echo Fail: 2.2.18 Mail transfer agent is not configured for local-only mode
 fi
 echo
 echo 2.3 Service Clients
