@@ -81,8 +81,6 @@ else
 	echo "Pass: Permisions are set"
 fi
 
-#! /bin/bash
-
 
 echo 6.1.10 Ensure no world writable files exist
 
@@ -121,3 +119,23 @@ df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -typ
 echo 6.1.14 Audit SGID executables
 echo Output listed:
 df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -2000
+
+echo 6.2.1 Ensure password fields are not empty
+
+pcheck=$(awk -F: '($2 == "" ) { print $1 " does not have a password "}' /etc/shadow)
+if [[ $pcheck != "" ]]
+then
+	echo "Fail: password feilds are empty" 
+else 
+	echo "Pass: password feilds are not empty"
+fi
+
+echo 6.2.2 Ensure no legacy "+" entries exist in /etc/passwd
+
+lcheck=$(grep '^\+:' /etc/passwd)
+if [[ $lcheck != "" ]]
+then
+	echo "Fail: legacy "+" entries exist in /etc/passwd" 
+else 
+	echo "Pass: no legacy "+" entries exist in /etc/passwd"
+fi
