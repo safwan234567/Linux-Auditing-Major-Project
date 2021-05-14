@@ -1,5 +1,9 @@
 #! /bin/bash
 
+script (){
+echo --------------------
+date
+echo --------------------
 passno=0
 failno=0
 echo 2.1 inetd Services
@@ -91,6 +95,11 @@ passno=$(($passno + 1))
 	fi
 done
 
-echo NUMBER OF PASSES: $passno
-echo NUMBER OF FAILED: $failno
-
+echo 'NUMBER OF PASSES:	'$passno''
+echo 'NUMBER OF FAILED:	'$failno''
+}
+script | tr '\t' ',' >> all_audits.csv
+script | tr '\t' ' ' > latestresult.csv
+echo 
+cat latestresult.csv
+echo To view all previous audits in csv format, 'cat all_audits.csv'
