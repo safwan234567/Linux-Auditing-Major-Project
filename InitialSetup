@@ -1,0 +1,315 @@
+#! /bin.bash
+
+#1.1.1.1
+if [[ `modprobe -n -v cramfs` != "install /bin/true" ]]
+        then
+            	echo "1.1.1.1 p1 is not configured properly"
+                failno=$(($failno + 1))
+                exit
+elif [[ -n `lsmod | grep cramfs` ]]
+                then
+                    	echo "1.1.1.1 is not configured properly"
+                        failno=$(($failno + 1))
+
+else
+    	echo "Pass"
+        passno=$(($passno + 1))
+fi #something went wrong here
+
+#1.1.1.2
+if [[ `modprobe -n -v vfat` != "install /bin/true" ]]
+        then
+            	echo "1.1.1.2 p1 is not configured properly"
+                failno=$(($failno + 1))
+                exit
+elif [[ -n `lsmod | grep vfat` ]]
+                then
+                    	echo "1.1.1.2 is not configured properly"
+                        failno=$(($failno + 1))
+
+else
+    	echo "Pass"
+        passno=$(($passno + 1))
+fi #something went wrong here
+
+#1.1.1.3
+if [[ `modprobe -n -v squashfs` != "install /bin/true" ]]
+        then
+            	echo "1.1.1.3 p1 is not configured properly"
+                failno=$(($failno + 1))
+                exit
+elif [[ -n `lsmod | grep squashfs` ]]
+                then
+                    	echo "1.1.1.3 is not configured properly"
+                        failno=$(($failno + 1))
+
+else
+    	echo "Pass"
+        passno=$(($passno + 1))
+fi #something went wrong here
+
+#1.1.1.4
+if [[ `modprobe -n -v udf` != "install /bin/true" ]]
+        then
+            	echo "1.1.1.4 p1 is not configured properly"
+                failno=$(($failno + 1))
+                exit
+elif [[ -n `lsmod | grep udf` ]]
+                then
+                    	echo "1.1.1.4 is not configured properly"
+                        failno=$(($failno + 1))
+
+else
+    	echo "Pass"
+        passno=$(($passno + 1))
+fi #something went wrong here
+
+#1.1.2
+f [[ -z `mount | grep -E '\s/tmp\s'` ]]
+        then
+            	echo "1.1.2 is not configured properly"
+                failno=$(($failno + 1))
+elif [[ -z `grep -E '\s/tmp\s' /etc/fstab | grep -E -v '^\s*#'`  ]]
+        then
+            	echo "1.1.2 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	echo "Pass"
+        passno=$(($passno + 1))
+fi
+
+#1.1.3
+if [[ -n `mount | grep -E '\s/tmp\s' | grep -v nodev` ]]
+        then 
+             	echo "1.1.3 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	echo "pass"
+        passno=$(($passno + 1))
+fi
+
+#1.1.4
+if [[ -n `mount | grep -E '\s/tmp\s' | grep -v nosuid` ]]
+        then
+            	echo "1.1.4 is not configured properly"
+                failno=$(($failno + 1))
+else 
+     	echo "pass"
+        passno=$(($passno + 1))
+fi
+
+#1.1.5
+if [[ -n `mount | grep -E '\s/tmp\s' | grep -v noexec` ]]
+        then
+            	echo "1.1.5 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	echo "pass"
+        passno=$(($passno + 1))
+fi
+
+#1.1.6
+if [[ -z `mount | grep -E '\s/var\s'` ]]
+        then 
+             	echo "1.1.6 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	echo Pass
+        passno=$(($passno + 1))
+fi
+
+#1.1.7
+if [[ -z `mount | grep /var/tmp` ]]
+        then
+            	echo "1.1.7 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	echo Pass
+        passno=$(($passno + 1))
+fi
+
+#1.1.8
+if [[ -n `mount | grep -E '\s/var/tmp\s' | grep -v nodev` ]]
+        then
+            	echo "1.1.8 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	echo Pass
+        passno=$(($passno + 1))
+fi
+
+#1.1.9
+if [[ -n `mount | grep -E '\s/var/tmp\s' | grep -v nosuid` ]]
+        then
+            	echo "1.1.9 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	echo Pass
+        passno=$(($passno + 1))
+fi
+
+#1.1.10
+if [[ -n `mount | grep -E '\s/var/tmp\s' | grep -v noexec` ]]
+        then
+            	echo "1.1.10 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	echo Pass
+        passno=$(($passno + 1))
+fi
+
+#1.1.11
+if [[ -z `mount | grep /var/log` ]]
+        then
+            	echo "1.1.9 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	echo Pass
+        passno=$(($passno + 1))
+fi
+
+#1.1.12
+if [[ -z `mount | grep /var/log/audit` ]]
+        then
+            	echo "1.1.12 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	echo "Pass"
+        passno=$(($passno + 1))
+fi
+
+#1.1.13
+if [[ -z `mount | grep /home` ]]
+        then
+            	echo "1.1.13 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	passno=$(($passno + 1))
+        echo "Pass"
+fi
+
+#1.1.14
+if [[ -n `mount | grep -E '\s/home\s' | grep -v nodev` ]]
+        then
+            	echo "1.1.14 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	echo "Pass"
+        passno=$(($passno + 1))
+fi
+
+#1.1.15
+if [[ -n `mount | grep -E '\s/dev/shm\s' | grep -v nodev` ]]
+        then
+            	echo "1.1.15 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	echo "Pass"
+        passno=$(($passno + 1))
+fi
+
+#1.1.16
+if [[ -n `mount | grep -E '\s/dev/shm\s' | grep -v nosuid` ]]
+        then
+            	echo "1.1.16 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	echo "Pass"
+        passno=$(($passno + 1))
+fi
+
+#1.1.17
+if [[ -n `mount | grep -E '\s/dev/shm\s' | grep -v noexec` ]]
+        then
+            	echo "1.1.17 is not configured"
+                failno=$(($failno + 1))
+else
+    	echo "Pass"
+        passno=$(($passno + 1))
+fi
+
+#1.1.18
+echo "unsure how to do"
+#having troubles
+echo ""
+#1.1.19
+echo "unsure how to do"
+#having troubles
+echo ""
+#1.1.20
+echo "unsure how to do"
+#hacing troubles
+echo ""
+
+#1.1.21
+if [[ -n `df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}'$
+        then
+            	echo "1.1.19 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	echo "Pass"
+        passno=$(($passno + 1))
+fi
+
+#1.1.22
+if [[ `systemctl is-enabled autofs 2>/dev/null` == 'enabled' ]]
+        then
+            	echo "1.1.22 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	echo "Pass"
+        passno=$(($passno + 1))
+fi
+
+#1.1.23
+if [[ `modprobe -n -v usb-storage` != "install /bin/true" ]]
+        then
+            	echo "1.1.23 p1 is not configured properly"
+                failno=$(($failno + 1))
+                exit
+elif [[ -n `lsmod | grep usb-storage` ]]
+                then
+                    	echo "1.1.1.1 is not configured properly"
+                        failno=$(($failno + 1))
+
+else
+    	echo "Pass"
+        passno=$(($passno + 1))
+fi #Having issues with this code
+
+#1.2.1
+echo "Verify GPG keys are configured correctly for your packet manager"
+rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
+
+#1.2.2
+if [[ `grep ^gpgcheck /etc/yum.conf` != 'gpgcheck=1' ]]
+        then
+            	echo "1.2.2 is not configured correctly"
+                failno=$(($failno + 1))
+else
+    	echo "Pass"
+        passno=$(($passno + 1))
+fi
+echo "idk how do 2nd part"
+
+#1.2.3
+echo "Verify that repositories are configured correctly"
+dnf repolist
+
+#1.3.1
+if [[ -z `rpm -q sudo` ]]
+        then
+            	echo "1.3.1 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	echo "Pass"
+        passno=$(($passno + 1))
+fi
+
+#1.3.2
+grep -Ei '^\s*Deafults\s+(\[^#]+,\s*)?use pty' /etc/sudoers /etc/sudoers.d/*
+#sudoers.d/* no such file no idea as well
+
+#1.3.3
+grep -Ei '^\s*Defaults\s+([^#]+,\s*)?logfile=' /etc/sudoers /etc/sudoers.d/*
+#Same as above
