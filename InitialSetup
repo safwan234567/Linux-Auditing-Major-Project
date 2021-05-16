@@ -5,7 +5,6 @@ if [[ `modprobe -n -v cramfs` != "install /bin/true" ]]
         then
             	echo "1.1.1.1 p1 is not configured properly"
                 failno=$(($failno + 1))
-                exit
 elif [[ -n `lsmod | grep cramfs` ]]
                 then
                     	echo "1.1.1.1 is not configured properly"
@@ -21,7 +20,6 @@ if [[ `modprobe -n -v vfat` != "install /bin/true" ]]
         then
             	echo "1.1.1.2 p1 is not configured properly"
                 failno=$(($failno + 1))
-                exit
 elif [[ -n `lsmod | grep vfat` ]]
                 then
                     	echo "1.1.1.2 is not configured properly"
@@ -37,7 +35,6 @@ if [[ `modprobe -n -v squashfs` != "install /bin/true" ]]
         then
             	echo "1.1.1.3 p1 is not configured properly"
                 failno=$(($failno + 1))
-                exit
 elif [[ -n `lsmod | grep squashfs` ]]
                 then
                     	echo "1.1.1.3 is not configured properly"
@@ -53,7 +50,6 @@ if [[ `modprobe -n -v udf` != "install /bin/true" ]]
         then
             	echo "1.1.1.4 p1 is not configured properly"
                 failno=$(($failno + 1))
-                exit
 elif [[ -n `lsmod | grep udf` ]]
                 then
                     	echo "1.1.1.4 is not configured properly"
