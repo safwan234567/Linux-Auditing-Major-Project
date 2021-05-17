@@ -1,5 +1,14 @@
 #! /bin/bash
 
+echo 6.1 System File Permissions
+
+echo 6.1.1 Audit system permissions
+
+bashcheck=$(rpm -qf /bin/bash)
+if [[ $bashcheck != 'bash-4.1.2-29.el6.x86_64 is not isntalled' ]]
+then
+	echo Fail: $bashcheck is installed
+fi
 
 echo 6.1.2  Ensure permissions on /etc/passwd are configured
 
@@ -139,3 +148,39 @@ then
 else 
 	echo "Pass: no legacy "+" entries exist in /etc/passwd"
 fi
+
+echo 6.2.8 Ensure users own their home directories
+
+grep -E -v '^(halt|sync|shutdown)' /etc/passwd | awk -F: '($7 != "'"$(which nologin)"'" && $7 != "/bin/false") { print $1 " " $6 }' | while read -r user dir; do
+    if [ ! -d "$dir" ]; then
+        echo "The home directory \"$dir\" of user $user does not exist."
+    else
+        owner=$(stat -L -c "%U" "$dir")
+        if [ "$owner" != "$user" ]; then
+            echo "The home directory \"$dir\" of user $user is owned by $owner."
+        fi
+    fi
+	echo (If no files are output PASS) 
+done
+
+
+echo 6.2.9 Ensure users dot files are not group or world writable
+ 
+grep -E -v '^(halt|sync|shutdown)' /etc/passwd | awk -F: '($7 != "'"$(which nologin)"'" && $7 != "/bin/false") { print $1 " " $6 }' | while read -r user dir; do
+    if [ ! -d "$dir" ]; then
+        echo "The home directory \"$dir\" of user \"$user\" does not exist."
+    else
+        for file in "$dir"/.[A-Za-z0-9]*; do
+            if [ ! -h "$file" ] && [ -f "$file" ]; then
+                fileperm="$(ls -ld "$file" | cut -f1 -d" ")"
+                if [ "$(echo "$fileperm" | cut -c6)"  != "-" ]; then
+                    echo "Group Write permission set on file $file"
+                fi
+                if [ "$(echo "$fileperm" | cut -c9)"  != "-" ]; then
+                    echo "Other Write permission set on file \"$file\""
+                fi
+            fi
+        done
+    fi
+	
+done
