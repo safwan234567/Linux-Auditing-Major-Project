@@ -149,6 +149,36 @@ else
 	echo "Pass: no legacy "+" entries exist in /etc/passwd"
 fi
 
+echo 6.2.4 Ensure no legacy "+" entries exist in /etc/shadow
+
+lecheck=$(grep '^\+:' /etc/shadow)
+if [[ $lecheck != "" ]]
+then
+	echo "Fail: legacy "+" entries exist in /etc/shadow" 
+else 
+	echo "Pass: no legacy "+" entries exist in /etc/shadow"
+fi
+
+echo 6.2.5 Ensure no legacy "+" entries exist in /etc/group
+
+legcheck=$(grep '^\+:' /etc/group)
+if [[ $legcheck != "" ]]
+then
+	echo "Fail: legacy "+" entries exist in /etc/group" 
+else 
+	echo "Pass: no legacy "+" entries exist in /etc/group"
+fi
+
+echo 6.2.6 Ensure root is the only UID 0 account
+
+rcheck=$(awk -F: '($3 == 0) { print $1 }' /etc/passwd)
+if [[ $rcheck != "root" ]]
+then
+	echo "Pass: root is the only UID 0 account" 
+else 
+	echo "Pass: root is the only UID 0 account" 
+fi
+
 echo 6.2.8 Ensure users own their home directories
 
 grep -E -v '^(halt|sync|shutdown)' /etc/passwd | awk -F: '($7 != "'"$(which nologin)"'" && $7 != "/bin/false") { print $1 " " $6 }' | while read -r user dir; do
@@ -182,5 +212,5 @@ grep -E -v '^(halt|sync|shutdown)' /etc/passwd | awk -F: '($7 != "'"$(which nolo
             fi
         done
     fi
-	
+	echo (If no files are output PASS) 
 done
