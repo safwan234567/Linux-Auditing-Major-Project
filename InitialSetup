@@ -303,9 +303,21 @@ else
 fi
 
 #1.3.2
-grep -Ei '^\s*Deafults\s+(\[^#]+,\s*)?use pty' /etc/sudoers /etc/sudoers.d/*
-#sudoers.d/* no such file no idea as well
-
+if [[ `grep -Ei '^\s*Deafults\s+(\[^#]+,\s*)?use pty' /etc/sudoers /etc/sudoers$
+        then
+            	echo "1.32 is not configured properly"
+                failno=$(($failno + 1))
+else
+    	echo "Pass"
+        passno=$(($passno + 1))
+fi
 #1.3.3
-grep -Ei '^\s*Defaults\s+([^#]+,\s*)?logfile=' /etc/sudoers /etc/sudoers.d/*
-#Same as above
+if [[ -f `grep -Ei '^\s*Defaults\s+([^#]+,\s*)?logfile=' /etc/sudoers /etc/sudo$
+        then
+            	echo "Pass"
+                passno=$(($passno + 1))
+else
+    	echo "1.3.3 is not configured properly"
+        failno=$(($failno + 1))
+fi
+
