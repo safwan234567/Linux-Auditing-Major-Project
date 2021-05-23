@@ -210,61 +210,87 @@ do
 
                 if [[ $n = 9 ]]
                 then
-                        echo Fail: 4.1.$n #Fix the stuff
+			echo  4.1.9 Ensure discretionary access control permission modification events are collected
+                        echo 'Fail:	Permission modification events are not collected' #Fix the stuff
 		elif [[ $n = 10 ]]
 		then
-			echo Fail: 4.1.$n #Fix the access stuff
+			echo 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected
+			echo 'Fail:	unsuccessful unauthorised file access attempts are not collected'
                	elif [[ $n = 11 ]]
 		then
-			echo Fail: 4.1.$n #Fix the identity stuff
+			echo 4.1.11 Ensure events that modify user/group information are collected
+			echo 'Fail:	events that modify user/group info are not collected' #Fix the identity stuff
 		elif [[ $n = 12 ]]
 		then
-			echo Fail: 4.1.$n #Fix the mounts stuff
+			echo 4.1.12 Ensure successful file system mounts are collected
+			echo 'Fail:	successful file system mouns are not collected' #Fix the mounts stuff
 
 		fi
                 n=$(($n + 1))
         failno=$(($failno + 1))
 	elif [[ -n "$check1" ]] && [[ -z "$check2" ]]
         then
+		 if [[ $n = 9 ]]
+                then
+			echo  4.1.9 Ensure discretionary access control permission modification events are collected
+                        echo 'Fail:	Permission modification events are not collected' #Fix the stuff
+		elif [[ $n = 10 ]]
+		then
+			echo 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected
+			echo 'Fail:	unsuccessful unauthorised file access attempts are not collected'
+               	elif [[ $n = 11 ]]
+		then
+			echo 4.1.11 Ensure events that modify user/group information are collected
+			echo 'Fail:	events that modify user/group info are not collected' #Fix the identity stuff
+		elif [[ $n = 12 ]]
+		then
+			echo 4.1.12 Ensure successful file system mounts are collected
+			echo 'Fail:	successful file system mouns are not collected' #Fix the mounts stuff
 
-                if [[ $n = 9 ]]
-                then
-                        echo Fail: 4.1.$n #Restart your computer
-                elif [[ $n = 10 ]]
-                then
-                        echo Fail: 4.1.$n #Restart your computer
-                elif [[ $n = 11 ]]
-                then
-                        echo Fail: 4.1.$n #Restart your computer
-                elif [[ $n = 12 ]]
-                then
-                        echo Fail: 4.1.$n #Restart your computer
-		
 		fi
-                n=$(($n + 1))
-		failno=$(($failno + 1))
+               n=$(($n + 1))
+failno=$(($failno + 1))
 	elif [[ -z "$check1" ]] && [[ -n "$check2" ]]
         then
+		if [[ $n = 9 ]]
+                then
+			echo  4.1.9 Ensure discretionary access control permission modification events are collected
+                        echo 'Fail:	Permission modification events are not collected' #Fix the stuff
+		elif [[ $n = 10 ]]
+		then
+			echo 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected
+			echo 'Fail:	unsuccessful unauthorised file access attempts are not collected'
+               	elif [[ $n = 11 ]]
+		then
+			echo 4.1.11 Ensure events that modify user/group information are collected
+			echo 'Fail:	events that modify user/group info are not collected' #Fix the identity stuff
+		elif [[ $n = 12 ]]
+		then
+			echo 4.1.12 Ensure successful file system mounts are collected
+			echo 'Fail:	successful file system mouns are not collected' #Fix the mounts stuff
 
-                if [[ $n = 9 ]]
-                then
-                        echo Fail: 4.1.$n #Restart your computer
-                elif [[ $n = 10 ]]
-                then
-                        echo Fail: 4.1.$n #Restart your computer
-                elif [[ $n = 11 ]]
-                then
-                        echo Fail: 4.1.$n #Restart your computer
-                elif [[ $n = 12 ]]
-                then
-                        echo Fail: 4.1.$n #Restart your computer
-	
 		fi
-                n=$(($n + 1))
+               n=$(($n + 1))
 failno=$(($failno + 1))
 
          else
-                echo PASS
+                 if [[ $n = 9 ]]
+                then
+			echo  4.1.9 Ensure discretionary access control permission modification events are collected
+                        echo 'Pass:	Permission modification events are collected' 
+		elif [[ $n = 10 ]]
+		then
+			echo 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected
+			echo 'Pass:	unsuccessful unauthorised file access attempts are collected'
+               	elif [[ $n = 11 ]]
+		then
+			echo 4.1.11 Ensure events that modify user/group information are collected
+			echo 'Pass:	events that modify user/group info are collected' 
+		elif [[ $n = 12 ]]
+		then
+			echo 4.1.12 Ensure successful file system mounts are collected
+			echo 'Pass:	successful file system mouns are collected'
+		fi
 		echo $n > /dev/null
 		n=$(($n + 1))
 passno=$(($passno + 1))
@@ -285,10 +311,12 @@ do
 
                 if [[ $n = 14 ]]
                 then
-                        echo Fail: 4.1.$n #Fix delete stuff
+			echo '4.1.14 Ensure file detection events by users are collected'
+                        echo 'Fail:	File deletion events by users are not collected'
 		elif [[ $n = 15 ]]
 		then
-			echo Fail: 4.1.$n #Fix the modules stuff
+			echo 4.1.15 Ensure kernel module loading and unloading is collected
+			echo 'Fail:	insmod, rmmod and modprobe are not set'
                
 		fi
                 n=$(($n + 1))
@@ -298,11 +326,15 @@ do
 
                 if [[ $n = 14 ]]
                 then
-                        echo Fail: 4.1.$n #Fix the stuff
-                elif [[ $n = 15 ]]
+			echo '4.1.14 Ensure file detection events by users are collected'
+                        echo 'Fail:	File deletion events by users are not collected'
+
+		elif [[ $n = 15 ]]
                 then
-                        echo Fail: 4.1.$n #Fix the stuff
-	
+                        echo 4.1.15 Ensure kernel module loading and unloading is collected
+                        echo 'Fail:     insmod, rmmod and modprobe are not set'
+
+	 
 		fi
                 n=$(($n + 1))
 failno=$(($failno + 1))
@@ -311,17 +343,36 @@ failno=$(($failno + 1))
 
                 if [[ $n = 14 ]]
                 then
-                        echo Fail: 4.1.$n #Fix the stuff
+                        
+			echo '4.1.14 Ensure file detection events by users are collected'
+                        echo 'Fail:	File deletion events by users are not collected'
+
+
                 elif [[ $n = 15 ]]
                 then
-                        echo Fail: 4.1.$n #Fix the stuff
+                        echo 4.1.15 Ensure kernel module loading and unloading is collected
+                        echo 'Fail:     insmod, rmmod and modprobe are not set'
+
 
 		fi
                 n=$(($n + 1))
 failno=$(($failno + 1))
 
          else
-                echo PASS
+		if [[ $n = 14 ]]
+                then
+                        
+			echo '4.1.14 Ensure file detection events by users are collected'
+                        echo 'Fail:	File deletion events by users are not collected'
+
+
+                elif [[ $n = 15 ]]
+                then
+                        echo 4.1.15 Ensure kernel module loading and unloading is collected
+                        echo 'Fail:     insmod, rmmod and modprobe are not set'
+
+
+		fi
 		echo $n > /dev/null
 		n=$(($n + 1))
 passno=$(($passno + 1))
@@ -329,52 +380,59 @@ passno=$(($passno + 1))
 	fi
 done
 
-
+echo 4.1.17 Ensure the audit configuration is immutable
 if [[ -z $(grep "^\s*[^#]" /etc/audit/rules.d/*.rules | grep -- "-e 2") ]]
 then
-	echo 'Fail: 4.1.17'  #Edit or create the file /etc/audit/rules.d/99-finalize.rulesand add the line "-e 2"
+	echo 'Fail:	Audit configuration is not immutable'  #Edit or create the file /etc/audit/rules.d/99-finalize.rulesand add the line "-e 2"
 failno=$(($failno + 1))
 else
-	echo PASS
+	echo 'Pass:	Audit configuration is immutable'
 passno=$(($passno + 1))
 
 fi
 
 echo
-echo 4.2.1 Configure rsyslog
+echo 4.2 Configure logging
+echo
+echo 4.2.1 COnfigure rsyslog
+echo
+
+echo 4.2.1.1 Ensure rsyslog is installed
 if [[ `rpm -q rsyslog` =~ 'rsyslog' ]]
 then
-	echo PASS
+	echo 'Pass:	rsyslog is installed'
 passno=$(($passno + 1))
 
 else
-	echo 'Fail: 4.2.1.1' #Run the following command to install rsyslog: # dnf install rsyslog
+	echo 'Fail:	rsyslog is not installed' #Run the following command to install rsyslog: # dnf install rsyslog
 failno=$(($failno + 1))
 fi
 
+echo 4.2.1.2 Ensure rsyslog Service is installed
 if [[ `systemctl is-enabled rsyslog` != 'enabled' ]]
 then
-	echo 'Fail: 4.2.1.2' #Run the following command to enable rsyslog: # systemctl --now enable rsyslog
+	echo 'Fail:	rsyslog Service is not installed' #Run the following command to enable rsyslog: # systemctl --now enable rsyslog
 failno=$(($failno + 1))
 else
-	echo PASS
+	echo 'Pass:	rsyslog Service is installed'
 passno=$(($passno + 1))
 
 fi
 
+echo 4.2.1.3 Ensure rsyslog default file permissions configured
 check=$(grep ^\$FileCreateMode /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null | egrep "(0640||0600)")
 if [[ -z $check ]]
 then
-	echo 'Fail: 4.2.1.3' #Edit the /etc/rsyslog.conf and /etc/rsyslog.d/*.conf files and set $FileCreateModeto 0640 or more restrictive:"$FileCreateMode 0640"'
+	echo 'Fail:	$FileCreateMode is not 0640 or more restrictive' #Edit the /etc/rsyslog.conf and /etc/rsyslog.d/*.conf files and set $FileCreateModeto 0640 or more restrictive:"$FileCreateMode 0640"'
 failno=$(($failno + 1))
 else
-	echo PASS
+	echo 'Pass:	$FileCreateMode is 0640 or more restrictive'
 passno=$(($passno + 1))
 
 fi
 
 
-
+echo 4.2.1.4 Ensure logging is configured
 if [[ -z `ls -l /var/log/` ]]
 then
 	echo Fail: 4.2.1.4 #Edit the following lines in the /etc/rsyslog.confand /etc/rsyslog.d/*.conffiles
@@ -386,56 +444,61 @@ passno=$(($passno + 1))
 fi
 
 
-
+echo 4.2.1.5 Ensure rsyslog is configured to send logs to a remote log host
 if [[ -z `grep "^*.*[^I][^I]*@" /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null` ]]
 then
-	echo 'Fail: 4.2.1.5' #Edit the /etc/rsyslog.conf and /etc/rsyslog.d/*.conf files and add the following line (where loghost.example.com is the name of your central log host). *.* @@loghost.example.com  then run the following command to reload the rsyslogd configuration: # systemctl restart rsyslog'
+	echo 'Fail:	rysyslog is not configured to send logs to a remote log host' #Edit the /etc/rsyslog.conf and /etc/rsyslog.d/*.conf files and add the following line (where loghost.example.com is the name of your central log host). *.* @@loghost.example.com  then run the following command to reload the rsyslogd configuration: # systemctl restart rsyslog'
 failno=$(($failno + 1))
 else
-	echo PASS
+	echo 'Pass:	rsyslog sends logs to remote log host'
 passno=$(($passno + 1))
 
 fi
 
 echo
 echo 4.2.2 Configure Journald
+echo
 
+echo 4.2.2.1 Ensure journald is configured to send logs to rsyslog
 if [[ `grep -e ^\s*ForwardToSyslog /etc/systemd/journald.conf` != 'ForwardToSyslog=yes' ]]
 then
-	echo Fail: 4.2.2.1 #Edit the /etc/systemd/journald.conf file and add the following line: ForwardToSyslog=yes
+	echo 'Fail:	journald does not forward logs to syslog' #Edit the /etc/systemd/journald.conf file and add the following line: ForwardToSyslog=yes
 failno=$(($failno + 1))
 else
-	echo PASS
+	echo 'Pass:	journald forwards logs to syslog'
 passno=$(($passno + 1))
 
 fi
 
+echo 4.2.2.2 Ensure journald is configured to compress large log files
 if [[ `grep -e ^\s*Compress /etc/systemd/journald.conf` != 'Compress=yes' ]]
 then
-	echo Fail: 4.2.2.2 #Edit the /etc/systemd/journald.conf file and add the following line: Compress=yes
+	echo 'Fail:	journald is not configured to compress larger files' #Edit the /etc/systemd/journald.conf file and add the following line: Compress=yes
 failno=$(($failno + 1))
 else
-	echo PASS
+	echo 'Pass:	journald is set to compress large files'
 passno=$(($passno + 1))
 
 fi
 
+echo 4.2.2.3 Ensure journald is configured to write logfiles to persistent disk
 if [[ `grep -e ^\s*Storage /etc/systemd/journald.conf` != 'Storage=persistent' ]]
 then
-	echo Fail 4.2.2.3 #Edit the /etc/systemd/journald.conf file and add the following line: Storage=persistent
+	echo 'Fail:	logs are not persisted to disk' #Edit the /etc/systemd/journald.conf file and add the following line: Storage=persistent
 failno=$(($failno + 1))
 else
-	echo PASS
+	echo 'Pass:	logs are persisted to disk'
 passno=$(($passno + 1))
 
 fi
 
+echo 4.2.3 Ensure permissions on all logfiles are configured
 if [[ -n `find /var/log -type f -perm /037 -ls -o -type d -perm /026 -ls` ]]
 then
-	echo Fail: 4.2.3 #Run the following commands to set permissions on all existing log files: find /var/log -type f -exec chmod g-wx,o-rwx "{}" + -o -type d -exec chmod g-w,o-rwx "{}" +
+	echo 'Fail:	Other has permissions on some files and Group has write or execute permissions on some files' #Run the following commands to set permissions on all existing log files: find /var/log -type f -exec chmod g-wx,o-rwx "{}" + -o -type d -exec chmod g-w,o-rwx "{}" +
 failno=$(($failno + 1))
 else
-	echo PASS
+	echo 'Pass:	permissions are configured'
 passno=$(($passno + 1))
 
 fi
