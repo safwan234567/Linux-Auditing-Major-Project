@@ -343,7 +343,7 @@ echo "Fail: users dot files are group or world writable"
 failno=$(($failno + 1))
 fi
 
-6.2.10 Ensure no users have .forward files
+echo 6.2.10 Ensure no users have .forward files
 
 fcheck=$(grep -E -v '^(root|halt|sync|shutdown)' /etc/passwd | awk -F: '($7 != "'"$(which /sbin/nologin)"'" && $7 != "/bin/false") { print $1 " " $6 }' | while read user dir; do
  if [ ! -d "$dir" ]; then
