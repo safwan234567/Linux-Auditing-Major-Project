@@ -1,6 +1,9 @@
 #! /bin/bash
 
 cat banner
+
+echo -ne '#####				[20% COMPLETE]\r'
+
 combined() {
 echo
 echo -----------------------------
@@ -35,9 +38,20 @@ echo --------------------------
 ./SystemMaintenance.sh
 echo
 }
-
+sleep 2
+echo -ne '##########			[40% COMPLETE]\r'
 
 combined | tr '\t' ',' >> all_audits.csv
+sleep 2
+
+echo -ne '###############		[60% COMPLETE]\r'
 combined | tr '\t' ',' > latestresult.csv
+sleep 2
 cat latestresult.csv| tr ',' ' '
+echo -ne '####################	[80% COMPLETE]\r'
 echo To view all previous audits in csv format, use command 'cat all_audits.csv'
+
+echo -ne '#########################[100% COMPLETE]\r'
+echo -ne '\n'
+
+
