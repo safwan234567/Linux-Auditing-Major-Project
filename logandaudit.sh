@@ -435,10 +435,10 @@ fi
 echo 4.2.1.4 Ensure logging is configured
 if [[ -z `ls -l /var/log/` ]]
 then
-	echo Fail: 4.2.1.4 #Edit the following lines in the /etc/rsyslog.confand /etc/rsyslog.d/*.conffiles
+	echo 'Fail:	logging is not configured' #Edit the following lines in the /etc/rsyslog.confand /etc/rsyslog.d/*.conffiles
 failno=$(($failno + 1))
 else
-	echo PASS
+	echo 'Pass:	logging is configured (Check /etc/rsyslog.conf and /etc/rsyslog.d/*.conf and edit the lines as appropriate for your environment)'
 passno=$(($passno + 1))
 
 fi
