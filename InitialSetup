@@ -1,226 +1,241 @@
-#! /bin.bash
+#! /bin/bash
+
+passno=0
+failno=0
+#Colors
+R='\033[1;31m' #Red
+G='\033[0;32m' #Green
+N='\033[0m' #No Color
+C='\033[1;33m' #Light Red
+
+echo "Chapter 1: Inital Setup"
 
 #1.1.1.1
 if [[ `modprobe -n -v cramfs` != "install /bin/true" ]]
         then
-            	echo "1.1.1.1 p1 is not configured properly"
+            	echo -e "${R}Fail:      1.1.1.1 p1 is not configured properly${N}"
+
                 failno=$(($failno + 1))
+
 elif [[ -n `lsmod | grep cramfs` ]]
                 then
-                    	echo "1.1.1.1 is not configured properly"
+                        echo -e "${R}Fail:      1.1.1.1 is not configured properly${N}"
                         failno=$(($failno + 1))
 
 else
-    	echo "Pass"
+    	echo -e "${G}Pass:      1.1.1.1 is configured properly${N}"
         passno=$(($passno + 1))
 fi #something went wrong here
 
 #1.1.1.2
 if [[ `modprobe -n -v vfat` != "install /bin/true" ]]
         then
-            	echo "1.1.1.2 p1 is not configured properly"
+                echo -e "${R}Fail:      1.1.1.2 p1 is not configured properly${N}"
                 failno=$(($failno + 1))
+
 elif [[ -n `lsmod | grep vfat` ]]
                 then
-                    	echo "1.1.1.2 is not configured properly"
+                    	echo -e "${R}Fail:      1.1.1.2 is not configured properly${N}"
                         failno=$(($failno + 1))
 
 else
-    	echo "Pass"
+    	echo -e "${G}Pass:      1.1.1.2 is configured properly${N}"
         passno=$(($passno + 1))
 fi #something went wrong here
 
 #1.1.1.3
 if [[ `modprobe -n -v squashfs` != "install /bin/true" ]]
         then
-            	echo "1.1.1.3 p1 is not configured properly"
+            	echo -e "${R}Fail:      1.1.1.3 p1 is not configured properly${N}"
                 failno=$(($failno + 1))
+
 elif [[ -n `lsmod | grep squashfs` ]]
                 then
-                    	echo "1.1.1.3 is not configured properly"
+                    	echo -e "${R}Fail:      1.1.1.3 is not configured properly${N}"
                         failno=$(($failno + 1))
 
 else
-    	echo "Pass"
+    	echo -e "${G}Pass:      1.1.1.3 is configured properly${N}"
         passno=$(($passno + 1))
 fi #something went wrong here
 
 #1.1.1.4
 if [[ `modprobe -n -v udf` != "install /bin/true" ]]
         then
-            	echo "1.1.1.4 p1 is not configured properly"
+                echo -e "${R}Fail:      1.1.1.4 p1 is not configured properly${N}"
                 failno=$(($failno + 1))
+
 elif [[ -n `lsmod | grep udf` ]]
                 then
-                    	echo "1.1.1.4 is not configured properly"
+                    	echo -e  "${R}Fail:     1.1.1.4 is not configured properly${N}"
                         failno=$(($failno + 1))
 
 else
-    	echo "Pass"
+        echo -e "${G}Pass:      1.1.1.4 is configured properly${N}"
         passno=$(($passno + 1))
 fi #something went wrong here
 
 #1.1.2
-f [[ -z `mount | grep -E '\s/tmp\s'` ]]
+if [[ -z `mount | grep -E '\s/tmp\s'` ]]
         then
-            	echo "1.1.2 is not configured properly"
+            	echo -e "${R}Fail:      1.1.2 (1) is not configured properly${N}"
                 failno=$(($failno + 1))
-elif [[ -z `grep -E '\s/tmp\s' /etc/fstab | grep -E -v '^\s*#'`  ]]
+elif [[ -z `grep -E '\s/tmp\s' /etc/fstab | grep -E -v '^\s*#'` ]]
         then
-            	echo "1.1.2 is not configured properly"
+            	echo -e "${R}Fail:      1.1.2 (2) is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo "Pass"
+        echo -e "${G}Pass:      1.1.2 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
 #1.1.3
 if [[ -n `mount | grep -E '\s/tmp\s' | grep -v nodev` ]]
         then 
-             	echo "1.1.3 is not configured properly"
+             	echo -e "${R}Fail:      1.1.3 is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo "pass"
+    	echo -e "${G}Pass:      1.1.3 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
 #1.1.4
 if [[ -n `mount | grep -E '\s/tmp\s' | grep -v nosuid` ]]
         then
-            	echo "1.1.4 is not configured properly"
+            	echo -e "${R}Fail:      1.1.4 is not configured properly${N}"
                 failno=$(($failno + 1))
 else 
-     	echo "pass"
+     	echo -e "${G}Pass:      1.1.4 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
 #1.1.5
 if [[ -n `mount | grep -E '\s/tmp\s' | grep -v noexec` ]]
         then
-            	echo "1.1.5 is not configured properly"
+            	echo -e "${R}Fail:      1.1.5 is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo "pass"
+    	echo "${G}Pass: 1.1.5 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
 #1.1.6
 if [[ -z `mount | grep -E '\s/var\s'` ]]
         then 
-             	echo "1.1.6 is not configured properly"
+             	echo -e "${R}Fail:      1.1.6 is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo Pass
+    	echo -e "${G}Pass:      1.1.6 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
 #1.1.7
 if [[ -z `mount | grep /var/tmp` ]]
         then
-            	echo "1.1.7 is not configured properly"
+            	echo -e "${R}Fail:      1.1.7 is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo Pass
+        echo -e "${G}Pass:      1.1.7 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
 #1.1.8
 if [[ -n `mount | grep -E '\s/var/tmp\s' | grep -v nodev` ]]
         then
-            	echo "1.1.8 is not configured properly"
+            	echo -e "${R}Fail:      1.1.8 is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo Pass
+    	echo -e "${G}Pass:      1.1.8 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
 #1.1.9
 if [[ -n `mount | grep -E '\s/var/tmp\s' | grep -v nosuid` ]]
         then
-            	echo "1.1.9 is not configured properly"
+            	echo -e "${R}Fail:      1.1.9 is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo Pass
+    	echo "${G}Pass: 1.1.9 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
 #1.1.10
 if [[ -n `mount | grep -E '\s/var/tmp\s' | grep -v noexec` ]]
         then
-            	echo "1.1.10 is not configured properly"
+            	echo -e "${R}Fail:      1.1.10 is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo Pass
+    	echo -e "${G}Pass:      1.1.10 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
 #1.1.11
 if [[ -z `mount | grep /var/log` ]]
         then
-            	echo "1.1.9 is not configured properly"
+            	echo -e "${R}Fail:      1.1.11 is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo Pass
+    	echo -e "${G}Pass:      1.1.11 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
 #1.1.12
 if [[ -z `mount | grep /var/log/audit` ]]
         then
-            	echo "1.1.12 is not configured properly"
+            	echo -e "${R}Fail:      1.1.12 is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo "Pass"
+    	echo -e "${G}Pass:      1.1.12 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
 #1.1.13
 if [[ -z `mount | grep /home` ]]
         then
-            	echo "1.1.13 is not configured properly"
+            	echo -e "${R}Fail:      1.1.13 is not configured properly${G}"
                 failno=$(($failno + 1))
 else
     	passno=$(($passno + 1))
-        echo "Pass"
+        echo -e "${G}Pass:      1.1.13 is configured properly${N}"
 fi
 
 #1.1.14
 if [[ -n `mount | grep -E '\s/home\s' | grep -v nodev` ]]
         then
-            	echo "1.1.14 is not configured properly"
+            	echo -e "${R}Fail:      1.1.14 is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo "Pass"
+    	echo -e "${G}Pass:      1.1.14 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
 #1.1.15
 if [[ -n `mount | grep -E '\s/dev/shm\s' | grep -v nodev` ]]
         then
-            	echo "1.1.15 is not configured properly"
+                echo -e "${R}Fail:      1.1.15 is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo "Pass"
+    	echo -e "${G}Pass:      1.1.15 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
 #1.1.16
 if [[ -n `mount | grep -E '\s/dev/shm\s' | grep -v nosuid` ]]
         then
-            	echo "1.1.16 is not configured properly"
+            	echo -e "${R}Fail:      1.1.16 is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo "Pass"
+        echo -e "${G}Pass:      1.1.16 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
 #1.1.17
 if [[ -n `mount | grep -E '\s/dev/shm\s' | grep -v noexec` ]]
         then
-            	echo "1.1.17 is not configured"
+            	echo -e "${R}Fail:      1.1.17 is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo "Pass"
+    	echo -e "${G}Pass:      1.1.17 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
@@ -234,90 +249,94 @@ echo "unsure how to do"
 echo ""
 #1.1.20
 echo "unsure how to do"
-#hacing troubles
-echo ""
+#having troubles
+echo "" 
 
 #1.1.21
-if [[ -n `df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}'$
+if [[ -n `df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}'
+ -xdev -type d \( -perm -0002 -a ! -perm -1000 \) 2>/dev/null` ]]
         then
-            	echo "1.1.19 is not configured properly"
+                echo -e "${R}Fail:      1.1.21 is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo "Pass"
+        echo -e "${G}Pass:      1.1.21 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
 #1.1.22
 if [[ `systemctl is-enabled autofs 2>/dev/null` == 'enabled' ]]
         then
-            	echo "1.1.22 is not configured properly"
+            	echo -e "${R}Fail:      1.1.22 is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo "Pass"
+    	echo -e "${G}Pass:      1.1.22 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
 #1.1.23
 if [[ `modprobe -n -v usb-storage` != "install /bin/true" ]]
         then
-            	echo "1.1.23 p1 is not configured properly"
+                echo -e "${R}Fail:      1.1.23 p1 is not configured properly${N}"
                 failno=$(($failno + 1))
-                exit
+
 elif [[ -n `lsmod | grep usb-storage` ]]
                 then
-                    	echo "1.1.1.1 is not configured properly"
+                    	echo -e "${R}Fail:      1.1.23 is not configured properly${N}"
                         failno=$(($failno + 1))
 
 else
-    	echo "Pass"
+    	echo "${G}Pass: 1.1.23 is configured properly${N}"
         passno=$(($passno + 1))
 fi #Having issues with this code
 
 #1.2.1
-echo "Verify GPG keys are configured correctly for your packet manager"
+echo -e "${C}Verify GPG keys are configured correctly for your packet manager${N}"
 rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
 
 #1.2.2
 if [[ `grep ^gpgcheck /etc/yum.conf` != 'gpgcheck=1' ]]
         then
-            	echo "1.2.2 is not configured correctly"
+            	echo -e "${R}Fail:      1.2.2 is not configured correctly${N}"
                 failno=$(($failno + 1))
 else
-    	echo "Pass"
+    	echo -e "${G}Pass:      1.2.2 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 echo "idk how do 2nd part"
 
 #1.2.3
-echo "Verify that repositories are configured correctly"
+echo -e "${C}Verify that repositories are configured correctly${N}"
 dnf repolist
 
 #1.3.1
 if [[ -z `rpm -q sudo` ]]
         then
-            	echo "1.3.1 is not configured properly"
+            	echo -e "${R}Fail:      1.3.1 is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo "Pass"
+    	echo -e "${G}Pass:      1.3.1 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 
 #1.3.2
-if [[ `grep -Ei '^\s*Deafults\s+(\[^#]+,\s*)?use pty' /etc/sudoers /etc/sudoers$
+if [[ `grep -Ei '^\s*Deafults\s+(\[^#]+,\s*)?use pty' /etc/sudoers /etc/sudoers.d/*` !$
         then
-            	echo "1.32 is not configured properly"
+            	echo -e "${R}Fail:      1.3.2 is not configured properly${N}"
                 failno=$(($failno + 1))
 else
-    	echo "Pass"
+    	echo -e "${G}Pass:      1.3.2 is configured properly${N}"
         passno=$(($passno + 1))
 fi
 #1.3.3
-if [[ -f `grep -Ei '^\s*Defaults\s+([^#]+,\s*)?logfile=' /etc/sudoers /etc/sudo$
+if [[ -f `grep -Ei '^\s*Defaults\s+([^#]+,\s*)?logfile=' /etc/sudoers /etc/sudoers.d/*$
         then
-            	echo "Pass"
+            	echo -e "${G}Pass:      1.3.3 is configured properly${N}"
                 passno=$(($passno + 1))
 else
-    	echo "1.3.3 is not configured properly"
+    	echo -e "${R}Fail:      1.3.3 is not configured properly${N}"
         failno=$(($failno + 1))
 fi
 
+
+echo -e "${G}Number of Passes:  '$passno'${N}"
+echo -e "${R}Number of Fails:   '$failno'${N}"
