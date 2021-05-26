@@ -2,8 +2,8 @@
 passno=0
 failno=0
 
-RED="\e[31m"
-GREEN="\e[32m"
+RED="\e[91m"
+GREEN="\e[92m"
 ENDCOLOR='\e[0m'
 
 echo
