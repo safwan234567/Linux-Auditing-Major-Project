@@ -3,10 +3,10 @@
 passno=0
 failno=0
 #Colors
-R='\033[1;31m' #Red
-G='\033[0;32m' #Green
-N='\033[0m' #No Color
-C='\033[1;33m' #Light Red
+R='\033[1;31m' #Red (For Fails)
+G='\033[0;32m' #Green  (For Pass)
+N='\033[0m' #No Color  (Colour Reset)
+C='\033[1;33m' #Light Red (Needs Checking By User)
 
 echo "Chapter 1: Inital Setup"
 
