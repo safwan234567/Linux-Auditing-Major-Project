@@ -198,6 +198,16 @@ if [[ `modprobe -n -v usb-storage` != "install /bin/true" ]]
             	echo -e "${RED}Fail:    USB Storage is not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
 
+elif [[ -n `lsmod | grep usb-storage` ]]
+                then
+                    	echo -e "${RED}Fail:    USB Storage is not disabled${ENDCOLOR}"
+                        failno=$(($failno + 1))
+
+else
+    	echo "${GREEN}Pass:     USB Storage is configured properly${ENDCOLOR}"
+        passno=$(($passno + 1))
+fi #Having issues with this code
+
 echo "1.2.1 Ensure GPG keys are configured"
 echo -e "${RED}Verify GPG keys are configured correctly for your packet manager${ENDCOLOR}"
 rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
