@@ -6,7 +6,75 @@ RED="\e[91m"
 GREEN="\e[92m"
 ENDCOLOR='\e[0m'
 
+echo CHAPTER 1 : INITIAL SETUP
+echo
+echo "1.1.1.2: Ensure mounting of vFAT filesystems is limited"
+if [[ `modprobe -n -v vfat` != "install /bin/true" ]]
+        then
+            	echo -e "${RED}Fail:    vFAT is not configured properly${ENDCOLOR}"
+                failno=$(($failno + 1))
 
+elif [[ -n `lsmod | grep vfat` ]]
+                then
+                    	echo -e "${RED}Fail:    vFAT is not configured properly${ENDCOLOR}"
+                        failno=$(($failno + 1))
+
+else
+    	echo -e "${GREEN}Pass:  vFAT is configured properly${ENDCOLOR}"
+        passno=$(($passno + 1))
+fi #something went wrong here
+
+echo "1.1.6 Ensure separate partition exists for /var "
+if [[ -z `mount | grep -E '\s/var\s'` ]]
+        then 
+             	echo -e "${RED}Fail:    Seperate partition does not exist${ENDCOLOR}"
+                failno=$(($failno + 1))
+else
+        echo -e "${GREEN}Pass:  /var is configured properly${ENDCOLOR}"
+        passno=$(($passno + 1))
+fi
+
+echo "1.1.7 Ensure separate partition exists for /var/tmp"
+if [[ -z `mount | grep /var/tmp` ]]
+        then
+            	echo -e "${RED}Fail:    Seperation partition does not exist${ENDCOLOR}"
+                failno=$(($failno + 1))
+else
+    	echo -e "${GREEN}Pass:  /var/tmp is configured properly${ENDCOLOR}"
+        passno=$(($passno + 1))
+fi
+
+echo "1.1.11 Ensure separate partition exists for /var/log "
+if [[ -z `mount | grep /var/log` ]]
+        then
+            	echo -e "${RED}Fail:    Seperate partion does not exist for /var/log${ENDCOLOR}"
+                failno=$(($failno + 1))
+else
+    	echo -e "${GREEN}Pass:  /var/log is configured properly${ENDCOLOR}"
+        passno=$(($passno + 1))
+fi
+
+echo "1.1.12 Ensure separate partition exists for /var/log/audit "
+if [[ -z `mount | grep /var/log/audit` ]]
+        then
+            	echo -e "${RED}Fail:    Seperate partition does not exist for /var/log/audit${ENDCOLOR}"
+                failno=$(($failno + 1))
+else
+    	echo -e "${GREEN}Pass:  /var/log/audit is configured properly${ENDCOLOR}"
+        passno=$(($passno + 1))
+fi
+
+echo "1.1.13 Ensure separate partition exists for /home "
+if [[ -z `mount | grep /home` ]]
+        then
+            	echo -e "${RED}Fail:    Seperate partition does not exist for /home${ENDCOLOR}"
+                failno=$(($failno + 1))
+else
+    	passno=$(($passno + 1))
+        echo -e "${GREEN}Pass:  /home is configured properly${ENDCOLOR}"
+fi
+echo END OF CHAPTER 1
+echo
 #-----------------------------------------------
 #CHAP 4
 echo
