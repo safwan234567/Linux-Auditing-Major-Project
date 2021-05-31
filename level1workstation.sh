@@ -211,7 +211,7 @@ if [[ `grep -Ei '^\s*Deafults\s+(\[^#]+,\s*)?use pty' /etc/sudoers /etc/sudoers.
             	echo -e "${RED}Fail:    sudo commands are not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${G}Pass:      sudo commands are configured properly${N}"
+    	echo -e "${GREEN}Pass:      sudo commands are configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
