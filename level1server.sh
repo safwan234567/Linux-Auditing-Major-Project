@@ -37,7 +37,7 @@ elif [[ -n `lsmod | grep squashfs` ]]
                         failno=$(($failno + 1))
 
 else
-    	echo -e "${G}Pass:      squashfs filesystems are configured properly${N}"
+    	echo -e "${GREEN}Pass:      squashfs filesystems are configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi #something went wrong here
 
