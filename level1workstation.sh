@@ -177,7 +177,6 @@ else
         passno=$(($passno + 1))
 fi
 
-
 echo "1.2.1 Ensure GPG keys are configured"
 echo -e "${RED}Verify GPG keys are configured correctly for your packet manager${ENDCOLOR}"
 rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
@@ -188,7 +187,7 @@ if [[ `grep ^gpgcheck /etc/yum.conf` != 'gpgcheck=1' ]]
             	echo -e "${RED}Fail:    gpgcheck is not globally activated ${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:  gpgcheck is configured correctly${ENDCOLOR}"
+        echo -e "${GREEN}Pass:  gpgcheck is configured correctly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
@@ -207,7 +206,7 @@ else
 fi
 
 echo "1.3.2 Ensure sudo commands use pty"
-if [[ `grep -Ei '^\s*Deafults\s+(\[^#]+,\s*)?use pty' /etc/sudoers /etc/sudoers.d/*` != 'Defaults use_pty' ]] 2> /dev/nu$
+if [[ `grep -Ei '^\s*Deafults\s+(\[^#]+,\s*)?use pty' /etc/sudoers /etc/sudoers.d/*` != 'Defaults use_pty' ]] 2> /dev/null
         then
             	echo -e "${RED}Fail:    sudo commands are not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
