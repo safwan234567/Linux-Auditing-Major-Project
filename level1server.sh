@@ -11,16 +11,16 @@ echo
 echo "1.1.1.1: Ensure mounting of cramfs filesystems is disabled" 
 if [[ `modprobe -n -v cramfs` != "install /bin/true" ]]
         then
-            	echo -e "${RED}Fail:    Cramfs is not disabled${ENDCOLOR}"
+            	echo -e "${RED}Fail:	Cramfs is not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
 
 elif [[ -n `lsmod | grep cramfs` ]]
                 then
-                    	echo -e "${RED}Fail:    Cramfs is not disabled${ENDCOLOR}"
+                    	echo -e "${RED}Fail:	Cramfs is not disabled${ENDCOLOR}"
                         failno=$(($failno + 1))
 
 else
-    	echo -e "${GREEN}Pass:  Cramfs is disabled${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	Cramfs is disabled${ENDCOLOR}"
         passno=$(($passno + 1))
 fi #something went wrong here
 
@@ -28,146 +28,146 @@ echo"1.1.1.3: Ensure mounting of squashfs filesystems is disabled"
 if [[ `modprobe -n -v squashfs` != "install /bin/true" ]]
  
        then
-           	echo -e "${RED}Fail:    squashfs filesystems is not disabled${ENDCOLOR}"
+           	echo -e "${RED}Fail:	squashfs filesystems is not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
 
 elif [[ -n `lsmod | grep squashfs` ]]
                 then
-                        echo -e "${RED}Fail:    squashfs filesystems is not disabled${ENDCOLOR}"
+                        echo -e "${RED}Fail:	squashfs filesystems is not disabled${ENDCOLOR}"
                         failno=$(($failno + 1))
 
 else
-    	echo -e "${GREEN}Pass:      squashfs filesystems are configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	squashfs filesystems are configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi #something went wrong here
 
 echo "1.1.1.4 Ensure mounting of udf filesystems is disabled"
 if [[ `modprobe -n -v udf` != "install /bin/true" ]]
         then
-           	echo -e "${RED}Fail:    udf filesystems are not disabled${ENDCOLOR}"
+           	echo -e "${RED}Fail:	udf filesystems are not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
 
 elif [[ -n `lsmod | grep udf` ]]
                 then
-                    	echo -e  "${RED}Fail:   udf filesystems are not disabled${ENDCOLOR}"
+                    	echo -e  "${RED}Fail:	udf filesystems are not disabled${ENDCOLOR}"
                         failno=$(($failno + 1))
 
 else
-        echo -e "${GREEN}Pass:  udf filesystems are configured properly${ENDCOLOR}"
+        echo -e "${GREEN}Pass:	udf filesystems are configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi #something went wrong here
 
 echo "1.1.2 Ensure /tmp is configured"
 if [[ -z `mount | grep -E '\s/tmp\s'` ]]
         then
-            	echo -e "${RED}Fail:    /tmp is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/tmp is not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 elif [[ -z `grep -E '\s/tmp\s' /etc/fstab | grep -E -v '^\s*#'` ]]
         then
-            	echo -e "${RED}Fail:    /tmp is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/tmp is not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:  /tmp is configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	/tmp is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.1.3 Ensure nodev option set on /tmp partition" 
 if [[ -n `mount | grep -E '\s/tmp\s' | grep -v nodev` ]]
         then 
-                echo -e "${RED}Fail:    /tmp is not configured properly${ENDCOLOR}"
+                echo -e "${RED}Fail:	/tmp is not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:  /tmp is configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	/tmp is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.1.4 Ensure nosuid option set on /tmp partition"
 if [[ -n `mount | grep -E '\s/tmp\s' | grep -v nosuid` ]]
         then
-            	echo -e "${RED}Fail:    /tmp is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/tmp is not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 else 
-     	echo -e "${GREEN}Pass:  /tmp is configured properly${ENDCOLOR}"
+     	echo -e "${GREEN}Pass:	/tmp is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.1.5 Ensure noexec option set on /tmp partition "
 if [[ -n `mount | grep -E '\s/tmp\s' | grep -v noexec` ]]
         then
-            	echo -e "${RED}Fail:    /tmp is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/tmp is not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo "${GREEN}Pass:     /tmp is configured properly${ENDCOLOR}"
+    	echo "${GREEN}Pass:	/tmp is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.1.8 Ensure nodev option set on /var/tmp partition"
 if [[ -n `mount | grep -E '\s/var/tmp\s' | grep -v nodev` ]]
         then
-            	echo -e "${RED}Fail:    /var/tmp is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/var/tmp is not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-        echo -e "${GREEN}Pass:  /var/tmp is configured properly${ENDCOLOR}"
+        echo -e "${GREEN}Pass:	/var/tmp is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.1.9 Ensure nosuid option set on /var/tmp partition "
 if [[ -n `mount | grep -E '\s/var/tmp\s' | grep -v nosuid` ]]
         then
-            	echo -e "${RED}Fail:    /var/tmp is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/var/tmp is not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo "${GREEN}Pass:     /var/tmp is configured properly${ENDCOLOR}"
+    	echo "${GREEN}Pass:	/var/tmp is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.1.10 Ensure noexec option set on /var/tmp partition "
 if [[ -n `mount | grep -E '\s/var/tmp\s' | grep -v noexec` ]]
         then
-            	echo -e "${RED}Fail:    /var/tmp is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/var/tmp is not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:  /var/tmp is configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	/var/tmp is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.1.14 Ensure nodev option set on /home partition"
 if [[ -n `mount | grep -E '\s/home\s' | grep -v nodev` ]]
         then
-            	echo -e "${RED}Fail:    /home is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/home is not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:  /home is configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	/home is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.1.15 Ensure nodev option set on /dev/shm partition"
 if [[ -n `mount | grep -E '\s/dev/shm\s' | grep -v nodev` ]]
         then
-            	echo -e "${RED}Fail:    /dev/shm is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/dev/shm is not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:  1.1.15 is configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	1.1.15 is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.1.16 Ensure nosuid option set on /dev/shm partition"
 if [[ -n `mount | grep -E '\s/dev/shm\s' | grep -v nosuid` ]]
         then
-            	echo -e "${RED}Fail:    /dev/shm is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/dev/shm is not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:  /dev/shm is configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	/dev/shm is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.1.17 Ensure noexec option set on /dev/shm partition"
 if [[ -n `mount | grep -E '\s/dev/shm\s' | grep -v noexec` ]]
         then
-            	echo -e "${RED}Fail:    /dev/shm is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/dev/shm is not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:  1.1.17 is configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	1.1.17 is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
@@ -175,84 +175,84 @@ echo "1.1.21 Ensure sticky bit is set on all world-writable directories"
 if [[ -n `df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}'
  -xdev -type d \( -perm -0002 -a ! -perm -1000 \) 2>/dev/null` ]]
         then
-            	echo -e "${RED}Fail:    Sticky bit is not set on all world-writable diectories${ENDCOLOR}"
+            	echo -e "${RED}Fail:	Sticky bit is not set on all world-writable diectories${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:  Sticky bit is configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	Sticky bit is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.1.22 Disable Automounting "
 if [[ `systemctl is-enabled autofs 2>/dev/null` == 'enabled' ]]
         then
-            	echo -e "${RED}Fail:    Automounting is not disabled${ENDCOLOR}"
+            	echo -e "${RED}Fail:	Automounting is not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:  Automounting is configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	Automounting is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.1.23 Disable USB Storage "
 if [[ `modprobe -n -v usb-storage` != "install /bin/true" ]]
         then
-            	echo -e "${RED}Fail:    USB Storage is not disabled${ENDCOLOR}"
+            	echo -e "${RED}Fail:	USB Storage is not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
 
 elif [[ -n `lsmod | grep usb-storage` ]]
                 then
-                    	echo -e "${RED}Fail:    USB Storage is not disabled${ENDCOLOR}"
+                    	echo -e "${RED}Fail:	USB Storage is not disabled${ENDCOLOR}"
                         failno=$(($failno + 1))
 
 else
-    	echo "${GREEN}Pass:     USB Storage is configured properly${ENDCOLOR}"
+    	echo "${GREEN}Pass:	USB Storage is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi #Having issues with this code
 
 echo "1.2.1 Ensure GPG keys are configured"
-echo -e "${RED}Verify GPG keys are configured correctly for your packet manager${ENDCOLOR}"
+echo -e "${RED}CHECK:	Verify GPG keys are configured correctly for your packet manager${ENDCOLOR}"
 rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
 
 echo "1.2.2 Ensure gpgcheck is globally activated"
 if [[ `grep ^gpgcheck /etc/yum.conf` != 'gpgcheck=1' ]]
         then
-            	echo -e "${RED}Fail:    gpgcheck is not globally activated ${ENDCOLOR}"
+            	echo -e "${RED}Fail:	gpgcheck is not globally activated ${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-        echo -e "${GREEN}Pass:  gpgcheck is configured correctly${ENDCOLOR}"
+        echo -e "${GREEN}Pass:	gpgcheck is configured correctly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.2.3 Ensure package manager repositories are configured"
-echo -e "${RED}Verify that repositories are configured correctly${ENDCOLOR}"
+echo -e "${RED}CHECK:	Verify that repositories are configured correctly${ENDCOLOR}"
 dnf repolist
 
 echo "1.3.1 Ensure sudo is installed"
 if [[ -z `rpm -q sudo` ]]
         then
-                echo -e "${RED}Fail:    sudo is not installed${ENDCOLOR}"
+                echo -e "${RED}Fail:	sudo is not installed${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:  sudo is installed${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	sudo is installed${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.3.2 Ensure sudo commands use pty"
 if [[ `grep -Ei '^\s*Deafults\s+(\[^#]+,\s*)?use pty' /etc/sudoers /etc/sudoers.d/*` != 'Defaults use_pty' ]] 2> /dev/null
         then
-            	echo -e "${RED}Fail:    sudo commands are not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	sudo commands are not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:      sudo commands are configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	sudo commands are configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.3.3 Ensure sudo log file exists"
 if [[ -f `grep -Ei '^\s*Defaults\s+([^#]+,\s*)?logfile=' /etc/sudoers /etc/sudoers.d/*` ]] 2> /dev/null
         then
-            	echo -e "${GREEN}Pass:  sudo log file exists${ENDCOLOR}"
+            	echo -e "${GREEN}Pass:	sudo log file exists${ENDCOLOR}"
                 passno=$(($passno + 1))
 else
-    	echo -e "${RED}Fail:    sudo log file does not exist${ENDCOLOR}"
+    	echo -e "${RED}Fail:	sudo log file does not exist${ENDCOLOR}"
         failno=$(($failno + 1))
 fi
 echo END OF CHAPTER 1
