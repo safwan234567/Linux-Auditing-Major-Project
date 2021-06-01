@@ -11,91 +11,91 @@ echo
 echo "1.1.1.2: Ensure mounting of vFAT filesystems is limited"
 if [[ `modprobe -n -v vfat` != "install /bin/true" ]]
         then
-            	echo -e "${RED}Fail:    vFAT is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	vFAT is not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 
 elif [[ -n `lsmod | grep vfat` ]]
                 then
-                    	echo -e "${RED}Fail:    vFAT is not configured properly${ENDCOLOR}"
+                    	echo -e "${RED}Fail:	vFAT is not configured properly${ENDCOLOR}"
                         failno=$(($failno + 1))
 
 else
-    	echo -e "${GREEN}Pass:  vFAT is configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	vFAT is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi #something went wrong here
 
 echo "1.1.6 Ensure separate partition exists for /var "
 if [[ -z `mount | grep -E '\s/var\s'` ]]
         then 
-             	echo -e "${RED}Fail:    Seperate partition does not exist${ENDCOLOR}"
+             	echo -e "${RED}Fail:	Seperate partition does not exist${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-        echo -e "${GREEN}Pass:  /var is configured properly${ENDCOLOR}"
+        echo -e "${GREEN}Pass:	/var is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.1.7 Ensure separate partition exists for /var/tmp"
 if [[ -z `mount | grep /var/tmp` ]]
         then
-            	echo -e "${RED}Fail:    Seperation partition does not exist${ENDCOLOR}"
+            	echo -e "${RED}Fail:	Seperation partition does not exist${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:  /var/tmp is configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	/var/tmp is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.1.11 Ensure separate partition exists for /var/log "
 if [[ -z `mount | grep /var/log` ]]
         then
-            	echo -e "${RED}Fail:    Seperate partion does not exist for /var/log${ENDCOLOR}"
+            	echo -e "${RED}Fail:	Seperate partion does not exist for /var/log${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:  /var/log is configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	/var/log is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.1.12 Ensure separate partition exists for /var/log/audit "
 if [[ -z `mount | grep /var/log/audit` ]]
         then
-            	echo -e "${RED}Fail:    Seperate partition does not exist for /var/log/audit${ENDCOLOR}"
+            	echo -e "${RED}Fail:	Seperate partition does not exist for /var/log/audit${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:  /var/log/audit is configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	/var/log/audit is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 echo "1.1.13 Ensure separate partition exists for /home "
 if [[ -z `mount | grep /home` ]]
         then
-            	echo -e "${RED}Fail:    Seperate partition does not exist for /home${ENDCOLOR}"
+            	echo -e "${RED}Fail:	Seperate partition does not exist for /home${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
     	passno=$(($passno + 1))
-        echo -e "${GREEN}Pass:  /home is configured properly${ENDCOLOR}"
+        echo -e "${GREEN}Pass:	/home is configured properly${ENDCOLOR}"
 fi
 
 echo "1.1.22 Disable Automounting "
 if [[ `systemctl is-enabled autofs 2>/dev/null` == 'enabled' ]]
         then
-            	echo -e "${RED}Fail:    Automounting is not disabled${ENDCOLOR}"
+            	echo -e "${RED}Fail:	Automounting is not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:  Automounting is configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	Automounting is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.1.23 Disable USB Storage "
 if [[ `modprobe -n -v usb-storage` != "install /bin/true" ]]
         then
-            	echo -e "${RED}Fail:    USB Storage is not disabled${ENDCOLOR}"
+            	echo -e "${RED}Fail:	USB Storage is not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
 
 elif [[ -n `lsmod | grep usb-storage` ]]
                 then
-                    	echo -e "${RED}Fail:    USB Storage is not disabled${ENDCOLOR}"
+                    	echo -e "${RED}Fail:	USB Storage is not disabled${ENDCOLOR}"
                         failno=$(($failno + 1))
 
 else
-    	echo "${GREEN}Pass:     USB Storage is configured properly${ENDCOLOR}"
+    	echo "${GREEN}Pass:	USB Storage is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi #Having issues with this code
 echo END OF CHAPTER 1
