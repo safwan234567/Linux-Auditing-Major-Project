@@ -35,6 +35,10 @@ elif [[ -n `lsmod | grep squashfs` ]]
                 then
                         echo -e "${RED}Fail:    squashfs filesystems is not disabled${ENDCOLOR}"
                         failno=$(($failno + 1))
+else
+        echo -e "${G}Pass:      squashfs filesystems are configured properly${N$
+        passno=$(($passno + 1))
+fi #something went wrong here
 
 echo "1.1.1.4 Ensure mounting of udf filesystems is disabled"
 if [[ `modprobe -n -v udf` != "install /bin/true" ]]
