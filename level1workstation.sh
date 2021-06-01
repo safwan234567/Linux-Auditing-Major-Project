@@ -11,16 +11,16 @@ echo
 echo "1.1.1.1: Ensure mounting of cramfs filesystems is disabled" 
 if [[ `modprobe -n -v cramfs` != "install /bin/true" ]]
         then
-            	echo -e "${RED}Fail:    Cramfs is not disabled${ENDCOLOR}"
+            	echo -e "${RED}Fail:	Cramfs is not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
 
 elif [[ -n `lsmod | grep cramfs` ]]
                 then
-                    	echo -e "${RED}Fail:    Cramfs is not disabled${ENDCOLOR}"
+                    	echo -e "${RED}Fail:	Cramfs is not disabled${ENDCOLOR}"
                         failno=$(($failno + 1))
 
 else
-    	echo -e "${GREEN}Pass:  Cramfs is disabled${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	Cramfs is disabled${ENDCOLOR}"
         passno=$(($passno + 1))
 fi #something went wrong here
 
@@ -28,55 +28,51 @@ echo"1.1.1.3: Ensure mounting of squashfs filesystems is disabled"
 if [[ `modprobe -n -v squashfs` != "install /bin/true" ]]
  
        then
-           	echo -e "${RED}Fail:    squashfs filesystems is not disabled${ENDCOLOR}"
+           	echo -e "${RED}Fail:	squashfs filesystems is not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
 
 elif [[ -n `lsmod | grep squashfs` ]]
                 then
-                        echo -e "${RED}Fail:    squashfs filesystems is not disabled${ENDCOLOR}"
+                        echo -e "${RED}Fail:	squashfs filesystems is not disabled${ENDCOLOR}"
                         failno=$(($failno + 1))
-else
-        echo -e "${G}Pass:      squashfs filesystems are configured properly${N$
-        passno=$(($passno + 1))
-fi #something went wrong here
 
 echo "1.1.1.4 Ensure mounting of udf filesystems is disabled"
 if [[ `modprobe -n -v udf` != "install /bin/true" ]]
         then
-           	echo -e "${RED}Fail:    udf filesystems are not disabled${ENDCOLOR}"
+           	echo -e "${RED}Fail:	udf filesystems are not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
 
 elif [[ -n `lsmod | grep udf` ]]
                 then
-                    	echo -e  "${RED}Fail:   udf filesystems are not disabled${ENDCOLOR}"
+                    	echo -e  "${RED}Fail:	udf filesystems are not disabled${ENDCOLOR}"
                         failno=$(($failno + 1))
 
 else
-        echo -e "${GREEN}Pass:  udf filesystems are configured properly${ENDCOLOR}"
+        echo -e "${GREEN}Pass:	udf filesystems are configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi #something went wrong here
 
 echo "1.1.2 Ensure /tmp is configured"
 if [[ -z `mount | grep -E '\s/tmp\s'` ]]
         then
-            	echo -e "${RED}Fail:    /tmp is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/tmp is not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 elif [[ -z `grep -E '\s/tmp\s' /etc/fstab | grep -E -v '^\s*#'` ]]
         then
-            	echo -e "${RED}Fail:    /tmp is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/tmp is not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:  /tmp is configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	/tmp is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
 echo "1.1.3 Ensure nodev option set on /tmp partition" 
 if [[ -n `mount | grep -E '\s/tmp\s' | grep -v nodev` ]]
         then 
-             	echo -e "${RED}Fail:    /tmp is not configured properly${ENDCOLOR}"
+             	echo -e "${RED}Fail:	/tmp is not configured properly${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
-    	echo -e "${GREEN}Pass:  /tmp is configured properly${ENDCOLOR}"
+    	echo -e "${GREEN}Pass:	/tmp is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
