@@ -984,7 +984,7 @@ then
 	echo -e "${RED}Fail:	Permisions are not set${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	Permisions are set${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	Permisions are set 	(PAGE 421)${ENDCOLOR}"
 	passno=$(($passno + 1))
 fi
 
@@ -996,7 +996,7 @@ then
 	echo -e "${RED}Fail:	Permisions are not set${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	Permisions are set${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	Permisions are set 	(PAGE 422)${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1009,7 +1009,7 @@ then
 	echo -e "${RED}Fail:	Permisions are not set${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	Permisions are set${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	Permisions are set 	(PAGE 423)${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1022,7 +1022,7 @@ then
 	echo -e "${RED}Fail:	Permisions are not set${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	Permisions are set${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	Permisions are set 	(PAGE 424)${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1035,7 +1035,7 @@ then
 	echo -e "${RED}Fail:	Permisions are not set${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	Permisions are set${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	Permisions are set 	(PAGE 425)${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1048,7 +1048,7 @@ then
 	echo -e "${RED}Fail:	Permisions are not set${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	Permisions are set${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	Permisions are set 	(PAGE 426)${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1061,7 +1061,7 @@ then
 	echo -e "${RED}Fail:	Permisions are not set${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	Permisions are set${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	Permisions are set 	(PAGE 428)${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1074,7 +1074,7 @@ then
 	echo -e "${RED}Fail:	Permisions are not set${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	Permisions are set${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	Permisions are set 	(PAGE 429)${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1088,7 +1088,7 @@ then
 	echo -e "${RED}Fail:	world writable files exist${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	No world writable files exist${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	No world writable files exist 	(PAGE 430)${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1101,7 +1101,7 @@ then
 	echo -e "${RED}Fail:	unowned files or directories exist${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	No unowned files or directories exist${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	No unowned files or directories exist 	(PAGE 432)${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1114,7 +1114,7 @@ then
 	echo -e "${RED}Fail:	ungrouped files or directories exist${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	No ungrouped files or directories exist${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	No ungrouped files or directories exist 	(PAGE 434)${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1127,6 +1127,7 @@ echo 6.1.14 Audit SGID executables
 echo Output listed:
 df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -2000
 
+
 echo 6.2.1 Ensure password fields are not empty
 
 pcheck=$(awk -F: '($2 == "" ) { print $1 " does not have a password "}' /etc/shadow)
@@ -1135,7 +1136,7 @@ then
 	echo -e "${RED}Fail:	password feilds are empty${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	password feilds are not empty${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	password feilds are not empty 	(PAGE 441)${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1148,7 +1149,7 @@ then
 	echo -e "${RED}Fail:	legacy "+" entries exist in /etc/passwd${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	no legacy "+" entries exist in /etc/passwd${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	no legacy "+" entries exist in /etc/passwd 	(PAGE 442)${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1171,7 +1172,7 @@ then
  echo -e "${GREEN}Pass:	Ensure root PATH Integrity${ENDCOLOR}"
  passno=$(($passno + 1))
 else
-echo -e "${RED}Fail:	Cant ensure root PATH Integrity${ENDCOLOR}"
+echo -e "${RED}Fail:	Cant ensure root PATH Integrity 	(PAGE 443)${ENDCOLOR}"
 failno=$(($failno + 1))
 fi
 
@@ -1183,7 +1184,7 @@ then
 	echo -e "${RED}Fail:	legacy "+" entries exist in /etc/shadow${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	no legacy "+" entries exist in /etc/shadow${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	no legacy "+" entries exist in /etc/shadow 	(PAGE 444)${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1196,7 +1197,7 @@ then
 	echo -e "${RED}Fail:	legacy "+" entries exist in /etc/group${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	no legacy "+" entries exist in /etc/group${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	no legacy "+" entries exist in /etc/group 	(PAGE 445)${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1209,7 +1210,7 @@ then
 	echo -e "${RED}Fail:	root is the only UID 0 account${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	root is the only UID 0 account${ENDCOLOR}" 
+	echo -e "${GREEN}Pass:	root is the only UID 0 account 	(PAGE 446)${ENDCOLOR}" 
 		passno=$(($passno + 1))
 
 fi
@@ -1245,7 +1246,7 @@ then
  echo -e "${GREEN}Pass:	users home directories permissions are 750 or more restrictive${ENDCOLOR}"
  passno=$(($passno + 1))
 else
-echo -e "${RED}Fail:	users home directories permissions are NOT 750 or more restrictive${ENDCOLOR}"
+echo -e "${RED}Fail:	users home directories permissions are NOT 750 or more restrictive 	(PAGE 447)${ENDCOLOR}"
 failno=$(($failno + 1))
 fi
 
@@ -1268,7 +1269,7 @@ then
  echo -e "${GREEN}Pass:	users own their home directories${ENDCOLOR}"
  passno=$(($passno + 1))
 else
-echo -e "${RED}Fail:	users do not own their home directories${ENDCOLOR}"
+echo -e "${RED}Fail:	users do not own their home directories 	(PAGE 449)${ENDCOLOR}"
 failno=$(($failno + 1))
 fi
 
@@ -1296,7 +1297,7 @@ then
  echo -e "${GREEN}Pass:	users dot files are not group or world writable${ENDCOLOR}"
  passno=$(($passno + 1))
 else
-echo -e "${RED}Fail:	users dot files are group or world writable${ENDCOLOR}"
+echo -e "${RED}Fail:	users dot files are group or world writable 	(PAGE 451)${ENDCOLOR}"
 failno=$(($failno + 1))
 fi
 
@@ -1316,7 +1317,7 @@ then
  echo -e "${GREEN}Pass:	no users have .forward files${ENDCOLOR}"
  passno=$(($passno + 1))
 else
-echo -e "${RED}Fail:	users have .forward files${ENDCOLOR}"
+echo -e "${RED}Fail:	users have .forward files 	(PAGE 453)${ENDCOLOR}"
 failno=$(($failno + 1))
 fi
 
@@ -1336,7 +1337,7 @@ then
  echo -e "${GREEN}Pass:	No users have .netrc files${ENDCOLOR}"
  passno=$(($passno + 1))
 else
-echo -e "${RED}Fail:	Users have .netrc files${ENDCOLOR}"
+echo -e "${RED}Fail:	Users have .netrc files 	(PAGE 455)${ENDCOLOR}"
 failno=$(($failno + 1))
 fi
 
@@ -1376,7 +1377,7 @@ then
  echo -e "${GREEN}Pass:	users .netrc Files are not group or world accessible${ENDCOLOR}"
  passno=$(($passno + 1))
 else
-echo -e "${RED}Fail:	users .netrc Files are group or world accessible${ENDCOLOR}"
+echo -e "${RED}Fail:	users .netrc Files are group or world accessible 	(PAGE 457)${ENDCOLOR}"
 failno=$(($failno + 1))
 fi
 
@@ -1399,7 +1400,7 @@ then
  echo -e "${GREEN}Pass:	no users have .rhosts files${ENDCOLOR}"
  passno=$(($passno + 1))
 else
-echo -e "${RED}Fail:	users have .rhosts files${ENDCOLOR}"
+echo -e "${RED}Fail:	users have .rhosts files 	(PAGE 460)${ENDCOLOR}"
 failno=$(($failno + 1))
 fi
 
@@ -1417,7 +1418,7 @@ then
  echo -e "${GREEN}Pass:	all groups in /etc/passwd exist in /etc/group${ENDCOLOR}"
  passno=$(($passno + 1))
 else
-echo -e "${RED}Fail:	all groups in /etc/passwd do not exist in /etc/group${ENDCOLOR}"
+echo -e "${RED}Fail:	all groups in /etc/passwd do not exist in /etc/group 	(PAGE 462)${ENDCOLOR}"
 failno=$(($failno + 1))
 fi
 
@@ -1436,7 +1437,7 @@ then
  echo -e "${GREEN}Pass:	no duplicate UIDs exist${ENDCOLOR}"
  passno=$(($passno + 1))
 else
-echo -e "${RED}Fail:	Duplicate UIDs exist${ENDCOLOR}"
+echo -e "${RED}Fail:	Duplicate UIDs exist 	(PAGE 463)${ENDCOLOR}"
 failno=$(($failno + 1))
 fi
 
@@ -1451,7 +1452,7 @@ then
  echo -e "${GREEN}Pass:	no duplicate GIDs exist${ENDCOLOR}"
  passno=$(($passno + 1))
 else
-echo -e "${RED}Fail:	duplicate GIDs exist${ENDCOLOR}"
+echo -e "${RED}Fail:	duplicate GIDs exist 	(PAGE 464)${ENDCOLOR}"
 failno=$(($failno + 1))
 fi
 
@@ -1465,7 +1466,7 @@ then
  echo -e "${GREEN}Pass:	no duplicate user names exist${ENDCOLOR}"
  passno=$(($passno + 1))
 else
-echo -e "${RED}Fail:	duplicate user names exist${ENDCOLOR}"
+echo -e "${RED}Fail:	duplicate user names exist 	(PAGE 465)${ENDCOLOR}"
 failno=$(($failno + 1))
 fi
 
@@ -1479,7 +1480,7 @@ then
  echo -e "${GREEN}Pass:	no duplicate group names exist${ENDCOLOR}"
  passno=$(($passno + 1))
 else
-echo -e "${RED}Fail:	duplicate group names exist${ENDCOLOR}"
+echo -e "${RED}Fail:	duplicate group names exist 	(PAGE 466)${ENDCOLOR}"
 failno=$(($failno + 1))
 fi
 
@@ -1491,7 +1492,7 @@ then
  echo -e "${GREEN}Pass:	shadow group is empty${ENDCOLOR}"
  passno=$(($passno + 1))
 else
-echo -e "${RED}Fail:	shadow group is NOT empty${ENDCOLOR}"
+echo -e "${RED}Fail:	shadow group is NOT empty 	(PAGE 467)${ENDCOLOR}"
 failno=$(($failno + 1))
 fi
 
@@ -1507,9 +1508,12 @@ then
  echo -e "${GREEN}Pass:	all users home directories exist${ENDCOLOR}"
  passno=$(($passno + 1))
 else
-echo -e "${RED}Fail:	Not all users home directories exist${ENDCOLOR}"
+echo -e "${RED}Fail:	Not all users home directories exist 	(PAGE 468)${ENDCOLOR}"
 failno=$(($failno + 1))
 fi
+
+
+
 
 
 echo
