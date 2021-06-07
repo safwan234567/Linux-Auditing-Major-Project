@@ -1,10 +1,20 @@
 #! /bin/bash
 
+
+cat banner
+level1s() {
 passno=0
 failno=0
 RED="\e[91m"
 GREEN="\e[92m"
 ENDCOLOR="\e[0m"
+
+echo
+echo -----------------------------
+date
+echo -----------------------------
+echo LEVEL 1 SERVER AUDIT
+echo
 
 echo CHAPTER 1 : INITAL SETUP
 echo
@@ -1514,12 +1524,29 @@ fi
 
 
 
-
-
 echo
 echo "NUMBER OF PASSES:	$passno"
-echo "NUMBER OF FAILED:	$failno"
+echo "NUMBER OF FAILED:	$failno" 
 
+}
+sleep 2
+echo -ne '##########                    [40% COMPLETE]\r'
+
+level1s | tr '\t' ',' | tr -d '[' | sed -e 's/91m//g' | sed -e 's/92m//g' | sed -e 's/0m//g' >> all_audits.csv
+level1s | tr '\t' ',' | tr -d '[' | sed -e 's/91m//g' | sed -e 's/92m//g' | sed -e 's/0m//g' > latestresult.csv
+sleep 2
+
+echo -ne '###############               [60% COMPLETE]\r'
+
+level1s > latestresult.txt
+
+sleep 2
+cat latestresult.txt | tr '\t' ' '
+echo -ne '####################  [80% COMPLETE]\r'
+echo To view all previous audits in csv format, use command 'cat all_audits.csv'
+echo 'To view latest audit in table format, install Libreoffice and: file > open 'latestresult.csv''
+echo -ne '#########################[100% COMPLETE]\r'
+echo -ne '\n'
 
 
 

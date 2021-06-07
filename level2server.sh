@@ -1,10 +1,22 @@
 #! /bin/bash
+
+cat banner
+
+level2s() {
 passno=0
 failno=0
-
 RED="\e[91m"
 GREEN="\e[92m"
 ENDCOLOR='\e[0m'
+
+echo
+echo -----------------------------
+date
+echo -----------------------------
+echo LEVEL 2 SERVER AUDIT
+echo
+
+
 
 echo CHAPTER 1 : INITIAL SETUP
 echo
@@ -168,7 +180,7 @@ passno=$(($passno + 1))
 fi
 
 echo 4.1.1.2 Ensure auditd service is enabled
-if [[ `systemctl is-enabled auditd 2>/dev/null` != 'enabled' ]]
+if [[ `sys2emctl is-enabled auditd 2>/dev/null` != 'enabled' ]]
         then
         echo -e "${RED}Fail:	auditd service is not enabled${ENDCOLOR}"
 failno=$(($failno + 1))
@@ -558,3 +570,25 @@ fi
 echo
 echo NUMBER OF PASSES: $passno
 echo NUMBER OF FAILED: $failno
+}
+
+
+sleep 2
+echo -ne '##########                    [40% COMPLETE]\r'
+
+level2s | tr '\t' ',' | tr -d '[' | sed -e 's/91m//g' | sed -e 's/92m//g' | sed -e 's/0m//g' >> all_audits.csv
+level2s | tr '\t' ',' | tr -d '[' | sed -e 's/91m//g' | sed -e 's/92m//g' | sed -e 's/0m//g' > latestresult.csv
+sleep 2
+
+echo -ne '###############               [60% COMPLETE]\r'
+
+level2s > latestresult.txt
+
+sleep 2
+cat latestresult.txt | tr '\t' ' '
+echo -ne '####################  [80% COMPLETE]\r'
+echo To view all previous audits in csv format, use command 'cat all_audits.csv'
+echo 'To view latest audit in table format, install Libreoffice and: file > open 'latestresult.csv''
+echo -ne '#########################[100% COMPLETE]\r'
+echo -ne '\n'
+
