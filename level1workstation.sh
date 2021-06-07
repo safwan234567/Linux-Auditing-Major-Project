@@ -90,7 +90,7 @@ else
         passno=$(($passno + 1))
 fi
 
-cho "1.1.5 Ensure noexec option set on /tmp partition "
+echo "1.1.5 Ensure noexec option set on /tmp partition "
 if [[ -n `mount | grep -E '\s/tmp\s' | grep -v noexec` ]]
         then
             	echo -e "${RED}Fail:	/tmp is not configured properly${ENDCOLOR}"
