@@ -24,7 +24,7 @@ else
         passno=$(($passno + 1))
 fi #something went wrong here
 
-echo"1.1.1.3: Ensure mounting of squashfs filesystems is disabled"
+echo "1.1.1.3: Ensure mounting of squashfs filesystems is disabled"
 if [[ `modprobe -n -v squashfs` != "install /bin/true" ]]
  
        then
