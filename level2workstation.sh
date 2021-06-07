@@ -599,6 +599,23 @@ passno=$(($passno + 1))
 	fi
 done
 
+
+echo "4.1.16 Ensure system administrator actions (sudolog) are collected"
+correctoutput=$(echo "-w $(grep -r logfile /etc/sudoers* | sed -e 's/.*logfile=//;s/,? .*//') -p wa -k actions")
+check1=$(grep -E "^\s*-w\s+$(grep -r logfile /etc/sudoers* | sed -e 's/.*logfile=//;s/,? .*//')\s+-p\s+wa\s+-k\s+actions" /etc/audit/rules.d/*.rules)
+check2=$(auditctl -l | grep actions)
+if [[ $check1 = "$correctoutput" ]] && [[ $check2 = "$correctoutput" ]]
+then
+        echo -e "${GREEN}Pass:	sudolog is collected${ENDCOLOR}"
+passno=$(($passno + 1))
+else
+        echo -e "${RED}Fail:	sudolog is not collected${ENDCOLOR}"
+failno=$(($failno + 1))
+
+fi
+
+
+
 echo 4.1.17 Ensure the audit configuration is immutable
 if [[ -z $(grep "^\s*[^#]" /etc/audit/rules.d/*.rules | grep -- "-e 2") ]]
 then

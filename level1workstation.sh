@@ -275,6 +275,22 @@ passno=$(($passno + 1))
 
 fi
 
+echo 2.2.1.2 Ensure chrony is configured
+check1=$(grep -E "^(server|pool)" /etc/chrony.conf)
+check2=$(ps -ef | grep chronyd)
+if [[ -z $check1 ]] && [[ -z $check2 ]]
+then
+        echo -e "${RED}Fail:	Chrony is not configured properly${ENDCOLOR}"
+        echo -e "${RED}Please verify your remote server is configured properly:${ENDCOLOR}"
+        echo -e "${RED}$check1 ${ENDCOLOR}"
+failno=$(($failno + 1))
+else
+        echo -e "${GREEN}Pass:	Chrony is configured properly${ENDCOLOR}"
+        echo -e "${GREEN}Please verify your remote server is configured properly:${ENDCOLOR}"
+        echo -e "${GREEN}$check1 ${ENDCOLOR}"
+passno=$(($passno + 1))
+
+fi
 
 
 #LEVEL 1 SERVER & LEVEL 1 WORKSTATION (cups is level 1 server and level 2 workstation)
@@ -886,6 +902,15 @@ passno=$(($passno + 1))
 
 fi
 
+echo "4.2.1.6 Ensure remote rsyslog messages are only accepted on designated loghosts (not scored)"
+firstcheck=$(grep '$ModLoad imtcp' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null)
+secondcheck=$(grep '$InputTCPServerRun' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null)
+
+echo -e ''${RED}'Check:	If host is designated as log host, ensure $ModLoad and $InputTCPServerRun do not exist/are commented. For hosts not deignated as log hosts, ensure $ModLoad and $InputTCPServerRun are uncommented'${ENDCOLOR}''
+echo $firstcheck
+echo $secondcheck
+
+
 echo
 echo 4.2.2 Configure Journald
 echo
@@ -933,6 +958,10 @@ else
 passno=$(($passno + 1))
 
 fi
+
+echo "4.3 Ensure logorotate is configured (not scored)"
+echo -e "${RED}Check:	Review /etc/logrotate.conf and /etc/logrotate.d and verify logs are rotated according to site policy${ENDCOLOR}"
+
 
 echo
 #-----------------------------------------
