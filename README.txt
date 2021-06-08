@@ -31,7 +31,7 @@ After downloading, go to the directory of AuditThing and use the following comma
 For Level 1 server, replace <your_system_config> with level1server
 For Level 2 server, replace <your_system_config> with level2server
 For Level 1 workstation, replace <your_system_config> with level1workstation
-For Level 2 workstation, replace <your_system_config> with level12workstation
+For Level 2 workstation, replace <your_system_config> with level2workstation
 
 Next, run the script with `./<your_system_config>.sh`
 
