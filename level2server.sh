@@ -88,7 +88,7 @@ fi
 echo END OF CHAPTER 1
 echo
 #-----------------------------------------------
-echo CHAPTER 1 : NETWORK CONFIGURATION
+echo CHAPTER 3 : NETWORK CONFIGURATION
 echo 
 echo 3.3 Uncommon Network Protocols
 echo 3.3.1 Ensure DCCP is disabled
@@ -160,7 +160,7 @@ echo 4.1.1 Ensure auditing is enabled
 echo 4.1.1.1 Ensure auditd is installed
 if [[ -z `rpm -q audit audit-libs | grep audit-` ]]
 then
-	echo -e "${RED}Fail:	auditd is not installed${ENDCOLOR}"
+	echo -e "${RED}Fail:	auditd is not installed	(PAGE 267)${ENDCOLOR}"
 failno=$(($failno + 1))
 
 else
@@ -172,7 +172,7 @@ fi
 echo 4.1.1.2 Ensure auditd service is enabled
 if [[ `sys2emctl is-enabled auditd 2>/dev/null` != 'enabled' ]]
         then
-        echo -e "${RED}Fail:	auditd service is not enabled${ENDCOLOR}"
+		echo -e "${RED}Fail:	auditd service is not enabled	(PAGE 268)${ENDCOLOR}"
 failno=$(($failno + 1))
 else
 	echo -e "${GREEN}Pass:	auditd service is enabled${ENDCOLOR}"
@@ -192,13 +192,13 @@ do
 		if [[ $n = 3 ]]
 		then
 			echo '4.1.1.3 Ensure auditing for processees that start prior to auditd is enabled'
-			echo -e "${RED}Fail:	auditing for processes that start prior to auditd is dis:abled${ENDCOLOR}"
+			echo -e "${RED}Fail:	auditing for processes that start prior to auditd is disabled	(PAGE 270)${ENDCOLOR}"
 #echo Fail: 4.1.1.$n #Edit /etc/default/grub and add audit=1 to GRUB_CMDLINE_LINUX
 		
 		elif [[ $n = 4 ]]
 		then	
 			echo '4.1.1.4 Ensure audit_backlog_limit is sufficient'
-			echo -e "${RED}Fail:	audit_backlog_limit is insufficient(recommended to  be 8192 or larger)${ENDCOLOR}"
+			echo -e "${RED}Fail:	audit_backlog_limit is insufficient(recommended to  be 8192 or larger)	(PAGE 272)${ENDCOLOR}"
 #echo Fail: 4.1.1.$n #"Edit /etc/defaut/grub and add audit_backlog_limit=<BACKLOG SIZE> to GRUB_CMDLINE_LINUX"
 		
 		fi
@@ -211,13 +211,11 @@ else
                 then
                         echo '4.1.1.3 Ensure auditing for processees that start prior to auditd is enabled'
                         echo -e "${GREEN}Pass:	auditing for processes that start prior to auditd is enabled${ENDCOLOR}"
-#echo Fail: 4.1.1.$n #Edit /etc/default/grub and add audit=1 to GRUB_CMDLINE_LINUX
 
                 elif [[ $n = 4 ]]
                 then
                         echo '4.1.1.4 Ensure audit_backlog_limit is sufficient'
                         echo -e "${GREEN}Pass:	audit_backlog_limit is sufficient${ENDCOLOR}"
-#echo Fail: 4.1.1.$n #"Edit /etc/defaut/grub and add audit_backlog_limit=<BACKLOG SIZE> to GRUB_CMDLINE_LINUX"
 
                 fi
 
@@ -236,7 +234,7 @@ if [[ -n `grep max_log_file /etc/audit/auditd.conf` ]]
         then
                 echo 'Important check:	Check if max_log_file parameter in /etc/audit/auditd.conf in accordance with site policy'
 	else
-		echo -e "${RED}Fail:	Audit log storage size is not configured${ENDCOLOR}"
+		echo -e "${RED}Fail:	Audit log storage size is not configured	(PAGE 275)${ENDCOLOR}"
         failno=$(($failno + 1))
 	fi
 
@@ -244,7 +242,7 @@ if [[ -n `grep max_log_file /etc/audit/auditd.conf` ]]
 echo 4.1.2.2 Ensure audit logs are not automatically deleted
 if [[ -z `grep 'max_log_file_action = keep_logs' /etc/audit/auditd.conf` ]]
         then
-                echo -e "${RED}Fail:	Audit logs are automatically deleted${ENDCOLOR}" #audit logs should not be automatically deleted
+		echo -e "${RED}Fail:	Audit logs are automatically deleted	(PAGE 277)${ENDCOLOR}" #audit logs should not be automatically deleted
 	#	echo Set the parameter 'max_log_file_action = keep_logs' in /etc/audit/auditd.conf
 failno=$(($failno + 1))
 else
@@ -260,7 +258,7 @@ check2=$(grep 'action_mail_acct = root' /etc/audit/auditd.conf)
 check3=$(grep 'admin_space_left_action = halt' /etc/audit/auditd.conf)
 	if [[ -z "$check1" || -z "$check2" || -z "$check3" ]]
 	then
-	echo -e "${RED}Fail:	System is not disabled when audit logs are full${ENDCOLOR}" #Set the parameters "'space_left_action = email'" "'action_mail_acct = root'" "'admin_space_left_action = halt'" in /etc/audit/auditd.conf 	
+		echo -e "${RED}Fail:	System is not disabled when audit logs are full	(PAGE 278)${ENDCOLOR}" #Set the parameters "'space_left_action = email'" "'action_mail_acct = root'" "'admin_space_left_action = halt'" in /etc/audit/auditd.conf 	
 failno=$(($failno + 1))
 else
 	echo -e "${GREEN}Pass:	System is disabled when audit logs are full${ENDCOLOR}"
@@ -280,32 +278,32 @@ do
 		if [[ $n = 3 ]]
 		then
 			echo '4.1.3 Ensure changes to system administration scope(sudoers) is collected'
-			echo -e "${RED}Fail:	Changes to sudoers are not collected${ENDCOLOR}"
+			echo -e "${RED}Fail:	Changes to sudoers are not collected	(PAGE 279)${ENDCOLOR}"
 		
 		elif [[ $n = 4 ]]
 		then
 			echo '4.1.4 Ensure login and logout events are collected'
-			echo -e "${RED}Fail:	Login and logout events are not collected${ENDCOLOR}"
+			echo -e "${RED}Fail:	Login and logout events are not collected	(PAGE 281)${ENDCOLOR}"
 
 		elif [[ $n = 5 ]]
 		then
 			echo '4.1.5 Ensure session initiation information is collected'
-			echo -e "${RED}Fail:	Session initiation information is not collected${ENDCOLOR}" 
+			echo -e "${RED}Fail:	Session initiation information is not collected	(PAGE 283)${ENDCOLOR}" 
 
 		elif [[ $n = 6 ]]
 		then
 			echo '4.1.6 Ensure events that modify date and time iformation are collected'
-			echo -e "${RED}Fail:	Events that modify data dn time information are not collected${ENDCOLOR}"
+			echo -e "${RED}Fail:	Events that modify data dn time information are not collected	(PAGE 285)${ENDCOLOR}"
 
 		elif [[ $n = 7 ]]
 		then
 			echo '4.1.7 Ensure events that modify Mandatory Access Controls are collected'
-			echo -e "${RED}Fail:	Events that modify system Mandatory Access Controls are not collected${ENDCOLOR}"
+			echo -e "${RED}Fail:	Events that modify system Mandatory Access Controls are not collected	(PAGE 287)${ENDCOLOR}"
 
 		elif [[ $n = 8 ]]
 		then
 			echo '4.1.8 Ensure events that modify the system network environment are collected'
-			echo -e "${RED}Fail:	Events that modify the system network environment are not collected${ENDCOLOR}"
+			echo -e "${RED}Fail:	Events that modify the system network environment are not collected	(PAGE 289)${ENDCOLOR}"
 		
 		fi
 		n=$(($n + 1))
@@ -363,19 +361,19 @@ do
                 if [[ $n = 9 ]]
                 then
 			echo  4.1.9 Ensure discretionary access control permission modification events are collected
-                        echo -e "${RED}Fail:	Permission modification events are not collected${ENDCOLOR}" #Fix the stuff
+			echo -e "${RED}Fail:	Permission modification events are not collected	(PAGE 291)${ENDCOLOR}" 
 		elif [[ $n = 10 ]]
 		then
 			echo 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected
-			echo -e "${RED}Fail:	unsuccessful unauthorised file access attempts are not collected${ENDCOLOR}"
+			echo -e "${RED}Fail:	unsuccessful unauthorised file access attempts are not collected	(PAGE 294)${ENDCOLOR}"
                	elif [[ $n = 11 ]]
 		then
 			echo 4.1.11 Ensure events that modify user/group information are collected
-			echo -e "${RED}Fail:	events that modify user/group info are not collected${ENDCOLOR}" #Fix the identity stuff
+			echo -e "${RED}Fail:	events that modify user/group info are not collected	(PAGE 297)${ENDCOLOR}" 
 		elif [[ $n = 12 ]]
 		then
 			echo 4.1.12 Ensure successful file system mounts are collected
-			echo -e "${RED}Fail:	successful file system mouns are not collected${ENDCOLOR}" #Fix the mounts stuff
+			echo -e "${RED}Fail:	successful file system mouns are not collected	(PAGE 299)${ENDCOLOR}" 
 
 		fi
                 n=$(($n + 1))
@@ -385,19 +383,19 @@ do
 		 if [[ $n = 9 ]]
                 then
 			echo  4.1.9 Ensure discretionary access control permission modification events are collected
-                        echo -e "${RED}Fail:	Permission modification events are not collected${ENDCOLOR}" #Fix the stuff
+			echo -e "${RED}Fail:	Permission modification events are not collected	(PAGE 291)${ENDCOLOR}" 
 		elif [[ $n = 10 ]]
 		then
 			echo 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected
-			echo -e "${RED}Fail:	unsuccessful unauthorised file access attempts are not collected${ENDCOLOR}"
+			echo -e "${RED}Fail:	unsuccessful unauthorised file access attempts are not collected	(PAGE 294)${ENDCOLOR}"
                	elif [[ $n = 11 ]]
 		then
 			echo 4.1.11 Ensure events that modify user/group information are collected
-			echo -e "${RED}Fail:	events that modify user/group info are not collected${ENDCOLOR}" #Fix the identity stuff
+			echo -e "${RED}Fail:	events that modify user/group info are not collected	(PAGE 297)${ENDCOLOR}" 
 		elif [[ $n = 12 ]]
 		then
 			echo 4.1.12 Ensure successful file system mounts are collected
-			echo -e "${RED}Fail:	successful file system mouns are not collected${ENDCOLOR}" #Fix the mounts stuff
+			echo -e "${RED}Fail:	successful file system mouns are not collected	(PAGE 299)${ENDCOLOR}" 
 
 		fi
                n=$(($n + 1))
@@ -407,19 +405,19 @@ failno=$(($failno + 1))
 		if [[ $n = 9 ]]
                 then
 			echo  4.1.9 Ensure discretionary access control permission modification events are collected
-                        echo -e "${RED}Fail:	Permission modification events are not collected${ENDCOLOR}" #Fix the stuff
+			echo -e "${RED}Fail:	Permission modification events are not collected	(PAGE 291)${ENDCOLOR}" 
 		elif [[ $n = 10 ]]
 		then
 			echo 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected
-			echo -e "${RED}Fail:	unsuccessful unauthorised file access attempts are not collected${ENDCOLOR}"
+			echo -e "${RED}Fail:	unsuccessful unauthorised file access attempts are not collected	(PAGE 294)${ENDCOLOR}"
                	elif [[ $n = 11 ]]
 		then
 			echo 4.1.11 Ensure events that modify user/group information are collected
-			echo -e "${RED}Fail:	events that modify user/group info are not collected${ENDCOLOR}" #Fix the identity stuff
+			echo -e "${RED}Fail:	events that modify user/group info are not collected	(PAGE 297)${ENDCOLOR}" 
 		elif [[ $n = 12 ]]
 		then
 			echo 4.1.12 Ensure successful file system mounts are collected
-			echo -e "${RED}Fail:	successful file system mouns are not collected${ENDCOLOR}" #Fix the mounts stuff
+			echo -e "${RED}Fail:	successful file system mouns are not collected	(PAGE 299)${ENDCOLOR}" 
 
 		fi
                n=$(($n + 1))
@@ -464,11 +462,11 @@ do
                 if [[ $n = 14 ]]
                 then
 			echo '4.1.14 Ensure file detection events by users are collected'
-                        echo -e "${RED}Fail:	File deletion events by users are not collected${ENDCOLOR}"
+			echo -e "${RED}Fail:	File deletion events by users are not collected	(PAGE 303)${ENDCOLOR}"
 		elif [[ $n = 15 ]]
 		then
 			echo 4.1.15 Ensure kernel module loading and unloading is collected
-			echo -e "${RED}Fail:	insmod, rmmod and modprobe are not set${ENDCOLOR}"
+			echo -e "${RED}Fail:	insmod, rmmod and modprobe are not set	(PAGE 305)${ENDCOLOR}"
                
 		fi
                 n=$(($n + 1))
@@ -479,12 +477,12 @@ do
                 if [[ $n = 14 ]]
                 then
 			echo '4.1.14 Ensure file detection events by users are collected'
-                        echo -e "${RED}Fail:	File deletion events by users are not collected${ENDCOLOR}"
+			echo -e "${RED}Fail:	File deletion events by users are not collected	(PAGE 303)${ENDCOLOR}"
 
 		elif [[ $n = 15 ]]
                 then
                         echo 4.1.15 Ensure kernel module loading and unloading is collected
-                        echo -e "${RED}Fail:     insmod, rmmod and modprobe are not set${ENDCOLOR}"
+			echo -e "${RED}Fail:     insmod, rmmod and modprobe are not set	(PAGE 305)${ENDCOLOR}"
 
 	 
 		fi
@@ -497,13 +495,13 @@ failno=$(($failno + 1))
                 then
                         
 			echo '4.1.14 Ensure file detection events by users are collected'
-                        echo -e "${RED}Fail:	File deletion events by users are not collected${ENDCOLOR}"
+			echo -e "${RED}Fail:	File deletion events by users are not collected	(PAGE 303)${ENDCOLOR}"
 
 
                 elif [[ $n = 15 ]]
                 then
                         echo 4.1.15 Ensure kernel module loading and unloading is collected
-                        echo -e "${RED}Fail:     insmod, rmmod and modprobe are not set${ENDCOLOR}"
+			echo -e "${RED}Fail:     insmod, rmmod and modprobe are not set	(PAGE 305)${ENDCOLOR}"
 
 
 		fi
@@ -515,13 +513,13 @@ failno=$(($failno + 1))
                 then
                         
 			echo '4.1.14 Ensure file detection events by users are collected'
-                        echo -e "${RED}Fail:	File deletion events by users are not collected${ENDCOLOR}"
+			echo -e "${GREEN}Pass:	File deletion events by users are not collected${ENDCOLOR}"
 
 
                 elif [[ $n = 15 ]]
                 then
                         echo 4.1.15 Ensure kernel module loading and unloading is collected
-                        echo -e "${RED}Fail:     insmod, rmmod and modprobe are not set${ENDCOLOR}"
+			echo -e "${GREEN}Pass:     insmod, rmmod and modprobe are set${ENDCOLOR}"
 
 
 		fi
@@ -544,7 +542,7 @@ then
         echo -e "${GREEN}Pass:	sudolog is collected${ENDCOLOR}"
 passno=$(($passno + 1))
 else
-        echo -e "${RED}Fail:	sudolog is not collected${ENDCOLOR}"
+	echo -e "${RED}Fail:	sudolog is not collected	(PAGE 307)${ENDCOLOR}"
 failno=$(($failno + 1))
 
 fi
@@ -553,7 +551,7 @@ fi
 echo 4.1.17 Ensure the audit configuration is immutable
 if [[ -z $(grep "^\s*[^#]" /etc/audit/rules.d/*.rules | grep -- "-e 2") ]]
 then
-	echo -e "${RED}Fail:	Audit configuration is not immutable${ENDCOLOR}"  #Edit or create the file /etc/audit/rules.d/99-finalize.rulesand add the line "-e 2"
+	echo -e "${RED}Fail:	Audit configuration is not immutable	(PAGE 309)${ENDCOLOR}"  #Edit or create the file /etc/audit/rules.d/99-finalize.rulesand add the line "-e 2"
 failno=$(($failno + 1))
 else
 	echo -e "${GREEN}Pass:	Audit configuration is immutable${ENDCOLOR}"
@@ -599,4 +597,5 @@ echo To view all previous audits in csv format, use command 'cat all_audits.csv'
 echo 'To view latest audit in table format, install Libreoffice and: file > open 'latestresult.csv''
 echo -ne '#########################[100% COMPLETE]\r'
 echo -ne '\n'
+
 

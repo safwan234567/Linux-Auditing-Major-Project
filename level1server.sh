@@ -278,7 +278,7 @@ echo 2.1.1 Ensure xinetd is not installed
 xinetdcheck=$(rpm -q xinetd)
 if [[ $xinetdcheck != 'package xinetd is not installed' ]]
 then
-	echo -e ''${RED}'Fail:	'$xinetdcheck' is installed.'${ENDCOLOR}''
+	echo -e ''${RED}'Fail:	'$xinetdcheck' is installed.	(PAGE 127)'${ENDCOLOR}''
 failno=$(($failno + 1))
 else
 	echo -e "${GREEN}Pass:	xinetd is not installed${ENDCOLOR}"
@@ -294,7 +294,7 @@ echo 2.2.1.1 Ensure time synchronisation is in use
 chronycheck=$(rpm -q chrony)
 if [[ $chronycheck = 'package chrony is not installed' ]]
 then
-	echo -e "${RED}Fail:	chrony is not installed${ENDCOLOR}"
+	echo -e "${RED}Fail:	chrony is not installed	(PAGE 131)${ENDCOLOR}"
 failno=$(($failno + 1))
 else 
 	echo -e "${GREEN}Pass:	chrony is installed${ENDCOLOR}"
@@ -307,7 +307,7 @@ check1=$(grep -E "^(server|pool)" /etc/chrony.conf)
 check2=$(ps -ef | grep chronyd)
 if [[ -z $check1 ]] && [[ -z $check2 ]]
 then
-        echo -e "${RED}Fail:	Chrony is not configured properly${ENDCOLOR}"
+	echo -e "${RED}Fail:	Chrony is not configured properly	(PAGE 133)${ENDCOLOR}"
         echo -e "${RED}Please verify your remote server is configured properly:${ENDCOLOR}"
         echo -e "${RED}$check1 ${ENDCOLOR}"
 failno=$(($failno + 1))
@@ -326,10 +326,10 @@ echo 2.2.2 Ensure X Window System is not installed
 x11check=$(rpm -qa xorg-x11*)
 if [[ -n $x11check ]]
 then
-	echo -e "${RED}Fail:	X Window System is installed (GUI)${ENDCOLOR}"
+	echo -e "${RED}Fail:	X Window System is installed (GUI)	(PAGE 134)${ENDCOLOR}"
 failno=$(($failno + 1))
 else
-	echo -e "Pass:	X Window System is not installed${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	X Window System is not installed${ENDCOLOR}"
 passno=$(($passno + 1))
 
 fi
@@ -342,7 +342,7 @@ do
 	servicetest=$(systemctl is-enabled $s 2>/dev/null)
 	if [[ "$servicetest"  = 'enabled' ]]
 	then
-		echo ''2.2.$n' Ensure '$s' server is not enabled'
+		echo ''2.2.$n' Ensure '$s' server is not enabled	(PAGE 135 - 161)'
 		echo -e "${RED}Fail:	$s is enabled${ENDCOLOR}"
 		#echo Run the following command to disable $s: systemctl --now disable $s
 		n=$(($n + 1))
@@ -361,7 +361,7 @@ echo 2.2.18 Ensure mail transfer agent is configured for local-only mode
 localonlymtatest=$(ss -lntu | grep -E ':25\s' | grep -E -v '\s(127.0.0.1|::1):25\s')
 if [[ -n $localonlymtatest ]]
 then
-	echo -e "${RED}Fail:	Mail transfer agent is not configured for local-only mode${ENDCOLOR}"
+	echo -e "${RED}Fail:	Mail transfer agent is not configured for local-only mode	(PAGE 163)${ENDCOLOR}"
 failno=$(($failno + 1))
 else 
 	echo -e "${GREEN}Pass:	MTA is not listening on any non-loopback address(127.0.0.1 or ::1)${ENDCOLOR}"
@@ -383,15 +383,15 @@ do
 		if [[ $n = 1 ]]
 		then
 			echo 2.3.1 Ensure NIS Client is not installed
-			echo "${RED}Fail:	$s is installed${ENDCOLOR}"
+			echo "${RED}Fail:	$s is installed	(PAGE 166)${ENDCOLOR}"
 		elif [[ $n = 2 ]]
 		then
 			echo 2.3.2 Ensure telnet client is not installed
-			echo -e "${RED}Fail:	$s is installed${ENDCOLOR}"
+			echo -e "${RED}Fail:	$s is installed	(PAGE 168)${ENDCOLOR}"
 		elif [[ $n = 3 ]]
 		then
 			echo 2.3.3 Ensure LDAP client is not installed
-			echo -e "${RED}Fail:	'$s' is installed${ENDCOLOR}"
+			echo -e "${RED}Fail:	'$s' is installed	(PAGE 169)${ENDCOLOR}"
 		fi
 		n=$(($n + 1))
         failno=$(($failno + 1))
@@ -852,14 +852,14 @@ then
 passno=$(($passno + 1))
 
 else
-	echo -e "${RED}Fail:	rsyslog is not installed${ENDCOLOR}" #Run the following command to install rsyslog: # dnf install rsyslog
+	echo -e "${RED}Fail:	rsyslog is not installed	(PAGE 313)${ENDCOLOR}" #Run the following command to install rsyslog: # dnf install rsyslog
 failno=$(($failno + 1))
 fi
 
 echo 4.2.1.2 Ensure rsyslog Service is installed
 if [[ `systemctl is-enabled rsyslog` != 'enabled' ]]
 then
-	echo -e "${RED}Fail:	rsyslog Service is not installed${ENDCOLOR}" #Run the following command to enable rsyslog: # systemctl --now enable rsyslog
+	echo -e "${RED}Fail:	rsyslog Service is not installed	(PAGE 315)${ENDCOLOR}" #Run the following command to enable rsyslog: # systemctl --now enable rsyslog
 failno=$(($failno + 1))
 else
 	echo -e "${GREEN}Pass:	rsyslog Service is installed${ENDCOLOR}"
@@ -871,7 +871,7 @@ echo 4.2.1.3 Ensure rsyslog default file permissions configured
 check=$(grep ^\$FileCreateMode /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null | egrep "(0640||0600)")
 if [[ -z $check ]]
 then
-	echo -e ''${RED}'Fail:	$FileCreateMode is not 0640 or more restrictive'${ENDCOLOR}'' #Edit the /etc/rsyslog.conf and /etc/rsyslog.d/*.conf files and set $FileCreateModeto 0640 or more restrictive:"$FileCreateMode 0640"'
+	echo -e ''${RED}'Fail:	$FileCreateMode is not 0640 or more restrictive	(PAGE 317)'${ENDCOLOR}'' #Edit the /etc/rsyslog.conf and /etc/rsyslog.d/*.conf files and set $FileCreateModeto 0640 or more restrictive:"$FileCreateMode 0640"'
 failno=$(($failno + 1))
 else
 	echo -e ''${GREEN}'Pass:	$FileCreateMode is 0640 or more restrictive'${ENDCOLOR}''
@@ -880,22 +880,15 @@ passno=$(($passno + 1))
 fi
 
 
-echo 4.2.1.4 Ensure logging is configured
-if [[ -z `ls -l /var/log/` ]]
-then
-	echo -e "${RED}Fail:	logging is not configured${ENDCOLOR}" #Edit the following lines in the /etc/rsyslog.confand /etc/rsyslog.d/*.conffiles
-failno=$(($failno + 1))
-else
-	echo -e "${GREEN}Pass:	logging is configured (Check /etc/rsyslog.conf and /etc/rsyslog.d/*.conf and edit the lines as appropriate for your environment)${ENDCOLOR}"
-passno=$(($passno + 1))
-
-fi
+echo "4.2.1.4 Ensure logging is configured (Not scored)"
+loginfo=$(ls -l /var/log/)
+echo -e "${RED}Check:	Verify the log files are logging information by running 'ls -l /var/log' in another terminal and edit lines in /etc/rsyslog.conf and /etc/rsyslog.d/*.conf as appropriate for your environment	(PAGE 319)${ENDCOLOR}" #Edit the following lines in the /etc/rsyslog.confand /etc/rsyslog.d/*.conffiles
 
 
 echo 4.2.1.5 Ensure rsyslog is configured to send logs to a remote log host
 if [[ -z `grep "^*.*[^I][^I]*@" /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null` ]]
 then
-	echo -e "${RED}Fail:	rysyslog is not configured to send logs to a remote log host${ENDCOLOR}" #Edit the /etc/rsyslog.conf and /etc/rsyslog.d/*.conf files and add the following line (where loghost.example.com is the name of your central log host). *.* @@loghost.example.com  then run the following command to reload the rsyslogd configuration: # systemctl restart rsyslog'
+	echo -e "${RED}Fail:	rysyslog is not configured to send logs to a remote log host	(PAGE 321)${ENDCOLOR}" #Edit the /etc/rsyslog.conf and /etc/rsyslog.d/*.conf files and add the following line (where loghost.example.com is the name of your central log host). *.* @@loghost.example.com  then run the following command to reload the rsyslogd configuration: # systemctl restart rsyslog'
 failno=$(($failno + 1))
 else
 	echo -e "${GREEN}Pass:	rsyslog sends logs to remote log host${ENDCOLOR}"
@@ -908,7 +901,7 @@ echo "4.2.1.6 Ensure remote rsyslog messages are only accepted on designated log
 firstcheck=$(grep '$ModLoad imtcp' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null)
 secondcheck=$(grep '$InputTCPServerRun' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null)
 
-echo -e ''${RED}'Check:	If host is designated as log host, ensure $ModLoad and $InputTCPServerRun do not exist/are commented. For hosts not deignated as log hosts, ensure $ModLoad and $InputTCPServerRun are uncommented'${ENDCOLOR}''
+echo -e ''${RED}'Check:	If host is designated as log host, ensure $ModLoad and $InputTCPServerRun do not exist/are commented. For hosts not deignated as log hosts, ensure $ModLoad and $InputTCPServerRun are uncommented	(PAGE 323)'${ENDCOLOR}''
 echo $firstcheck
 echo $secondcheck
 
@@ -921,7 +914,7 @@ echo
 echo 4.2.2.1 Ensure journald is configured to send logs to rsyslog
 if [[ `grep -e ^\s*ForwardToSyslog /etc/systemd/journald.conf` != 'ForwardToSyslog=yes' ]]
 then
-	echo -e "${RED}Fail:	journald does not forward logs to syslog${ENDCOLOR}" #Edit the /etc/systemd/journald.conf file and add the following line: ForwardToSyslog=yes
+	echo -e "${RED}Fail:	journald does not forward logs to syslog	(PAGE 326)${ENDCOLOR}" #Edit the /etc/systemd/journald.conf file and add the following line: ForwardToSyslog=yes
 failno=$(($failno + 1))
 else
 	echo -e "${GREEN}Pass:	journald forwards logs to syslog${ENDCOLOR}"
@@ -932,7 +925,7 @@ fi
 echo 4.2.2.2 Ensure journald is configured to compress large log files
 if [[ `grep -e ^\s*Compress /etc/systemd/journald.conf` != 'Compress=yes' ]]
 then
-	echo -e "${RED}Fail:	journald is not configured to compress larger files${ENDCOLOR}" #Edit the /etc/systemd/journald.conf file and add the following line: Compress=yes
+	echo -e "${RED}Fail:	journald is not configured to compress larger files	(PAGE 328)${ENDCOLOR}" #Edit the /etc/systemd/journald.conf file and add the following line: Compress=yes
 failno=$(($failno + 1))
 else
 	echo -e "${GREEN}Pass:	journald is set to compress large files${ENDCOLOR}"
@@ -943,7 +936,7 @@ fi
 echo 4.2.2.3 Ensure journald is configured to write logfiles to persistent disk
 if [[ `grep -e ^\s*Storage /etc/systemd/journald.conf` != 'Storage=persistent' ]]
 then
-	echo -e "${RED}Fail:	logs are not persisted to disk${ENDCOLOR}" #Edit the /etc/systemd/journald.conf file and add the following line: Storage=persistent
+	echo -e "${RED}Fail:	logs are not persisted to disk	(PAGE 330)${ENDCOLOR}" #Edit the /etc/systemd/journald.conf file and add the following line: Storage=persistent
 failno=$(($failno + 1))
 else
 	echo -e "${GREEN}Pass:	logs are persisted to disk${ENDCOLOR}"
@@ -954,7 +947,7 @@ fi
 echo 4.2.3 Ensure permissions on all logfiles are configured
 if [[ -n `find /var/log -type f -perm /037 -ls -o -type d -perm /026 -ls` ]]
 then
-	echo -e "${RED}Fail:	Other has permissions on some files and Group has write or execute permissions on some files${ENDCOLOR}" #Run the following commands to set permissions on all existing log files: find /var/log -type f -exec chmod g-wx,o-rwx "{}" + -o -type d -exec chmod g-w,o-rwx "{}" +
+	echo -e "${RED}Fail:	Other has permissions on some files and Group has write or execute permissions on some files	(PAGE 331)${ENDCOLOR}" #Run the following commands to set permissions on all existing log files: find /var/log -type f -exec chmod g-wx,o-rwx "{}" + -o -type d -exec chmod g-w,o-rwx "{}" +
 failno=$(($failno + 1))
 else
 	echo -e "${GREEN}Pass:	permissions are configured${ENDCOLOR}"
@@ -963,7 +956,7 @@ passno=$(($passno + 1))
 fi
 
 echo "4.3 Ensure logorotate is configured (not scored)"
-echo -e "${RED}Check:	Review /etc/logrotate.conf and /etc/logrotate.d and verify logs are rotated according to site policy${ENDCOLOR}"
+echo -e "${RED}Check:	Review /etc/logrotate.conf and /etc/logrotate.d and verify logs are rotated according to site policy	(PAGE 333)${ENDCOLOR}"
 
 
 #-----------------------------------------
@@ -1533,6 +1526,7 @@ echo To view all previous audits in csv format, use command 'cat all_audits.csv'
 echo 'To view latest audit in table format, install Libreoffice and: file > open 'latestresult.csv''
 echo -ne '#########################[100% COMPLETE]\r'
 echo -ne '\n'
+
 
 
 
