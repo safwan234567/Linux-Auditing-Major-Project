@@ -95,7 +95,7 @@ echo 3.3.1 Ensure DCCP is disabled
 #3.3.1
 if ! modprobe -n -v dccp 2> /dev/null | tail -1 | grep -q 'install /bin/true'
         then
-                echo -e "${RED}Fail:	DCCP is not disabled${ENDCOLOR}"
+                echo -e "${RED}Fail:	DCCP is not disabled	(PAGE 198)${ENDCOLOR}"
                 failno=$(($failno + 1))
         else
                 echo -e "${GREEN}Pass:	DCCP is disabled${ENDCOLOR}"
@@ -107,7 +107,7 @@ echo 3.3.2 Ensure SCTP is disabled
 #3.3.2
 if ! modprobe -n -v sctp 2> /dev/null | tail -1 | grep -q 'install /bin/true'
         then
-                echo -e "${RED}Fail:	SCTP is not disabled${ENDCOLOR}"
+                echo -e "${RED}Fail:	SCTP is not disabled	(PAGE 199)${ENDCOLOR}"
                 failno=$(($failno + 1))
         else
                 echo -e "${GREEN}Pass:	SCTP is disabled${ENDCOLOR}"
@@ -119,7 +119,7 @@ echo 3.3.3 Ensure RDS is disabled
 #3.3.3
 if ! modprobe -n -v rds 2> /dev/null | tail -1 | grep -q 'install /bin/true'
         then
-                echo -e "${RED}Fail:	RDS is not disabled${ENDCOLOR}"
+                echo -e "${RED}Fail:	RDS is not disabled	(PAGE 200)${ENDCOLOR}"
                 failno=$(($failno + 1))
         else
                 echo -e "${GREEN}Pass:	RDS is disabled${ENDCOLOR}"
@@ -131,7 +131,7 @@ echo 3.3.4 Ensure TIPC is disabled
 #3.3.4
 if ! modprobe -n -v tipc 2> /dev/null | tail -1 | grep -q 'install /bin/true'
         then
-                echo -e "${RED}Fail:	TIPC is not disabled${ENDCOLOR}"
+                echo -e "${RED}Fail:	TIPC is not disabled	(PAGE 201)${ENDCOLOR}"
                 failno=$(($failno + 1))
         else
                 echo -e "${GREEN}Pass:	TIPC is disabled${ENDCOLOR}"
@@ -144,7 +144,7 @@ echo 3.6 Disable IPv6
 ipv6disable=$(grep -E "^\s*kernelopts=(\S+\s+)*ipv6\.disable=1\b\s*(\S+\s*)*$" /boot/grub2/grubenv)
         if [[ -z $ipv6disable ]]
         then
-                echo -e "${RED}Fail:	IPv6 is not disabled${ENDCOLOR}"
+                echo -e "${RED}Fail:	IPv6 is not disabled	(PAGE 263)${ENDCOLOR}"
                 failno=$(($failno + 1))
         else
                 echo -e "${GREEN}Pass:	IPv6 is disabled${ENDCOLOR}"
