@@ -387,7 +387,7 @@ ipv6allforwardcheck=$(sysctl net.ipv6.conf.all.forwarding)
                 echo -e "${GREEN}Pass:	IP forwarding is disabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	IP forwarding is not disabled${ENDCOLOR}"
+                echo -e "${RED}Fail:	IP forwarding is not disabled	(PAGE 172)${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -401,7 +401,7 @@ ipv4defaultredirectcheck=$(sysctl net.ipv4.conf.default.send_redirects)
                 echo -e "${GREEN}Pass:	Packet redirect sending is disabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	Packet redirect sending is not disabled${ENDCOLOR}"
+                echo -e "${RED}Fail:	Packet redirect sending is not disabled	(PAGE 175)${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -418,7 +418,7 @@ ipv6defaultroutecheck=$(sysctl net.ipv6.conf.default.accept_source_route)
                 echo -e "${GREEN}Pass:	Source routed packets are not accepted${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	Source routed packets are accepted${ENDCOLOR}"
+                echo -e "${RED}Fail:	Source routed packets are accepted	(PAGE 179)${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -435,7 +435,7 @@ ipv6icmprdcheck=$(sysctl net.ipv6.conf.default.accept_redirects)
                 echo -e "${GREEN}Pass:	ICMP redirects are not accepted${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	ICMP redirects are accepted${ENDCOLOR}"
+                echo -e "${RED}Fail:	ICMP redirects are accepted	(PAGE 182)${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -449,7 +449,7 @@ securedicmpcheck=$(sysctl net.ipv4.conf.default.secure_redirects)
                 echo -e "${GREEN}Pass:	Secure ICMP redirects are not accepted${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	Secure ICMP redirects are accepted${ENDCOLOR}"
+                echo -e "${RED}Fail:	Secure ICMP redirects are accepted	(PAGE 184)${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -463,7 +463,7 @@ packetlogdcheck=$(sysctl net.ipv4.conf.default.log_martians)
                 echo -e "${GREEN}Pass:	Suspicious packets are logged${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	Suspicious packets are not logged${ENDCOLOR}"
+                echo -e "${RED}Fail:	Suspicious packets are not logged	(PAGE 186)${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
