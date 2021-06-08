@@ -970,10 +970,10 @@ echo 6.1.2  Ensure permissions on /etc/passwd are configured
 pcheck=$(stat --format="%A" /etc/passwd)
 if [[ $pcheck != "-rw-r--r--" ]]
 then
-	echo -e "${RED}Fail:	Permisions are not set${ENDCOLOR}" 
+	echo -e "${RED}Fail:	Permisions are not set 	(PAGE 421)${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	Permisions are set 	(PAGE 421)${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	Permisions are set${ENDCOLOR}"
 	passno=$(($passno + 1))
 fi
 
@@ -982,10 +982,10 @@ echo 6.1.3  Ensure permissions on /etc/shadow are configured
 pecheck=$(stat --format="%A" /etc/shadow)
 if [[ $pecheck != "-rw-r-----" ]]
 then
-	echo -e "${RED}Fail:	Permisions are not set${ENDCOLOR}" 
+	echo -e "${RED}Fail:	Permisions are not set 	(PAGE 422)${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	Permisions are set 	(PAGE 422)${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	Permisions are set${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -995,10 +995,10 @@ echo 6.1.4  Ensure permissions on /etc/group are configured
 percheck=$(stat --format="%A" /etc/group)
 if [[ $percheck != "-rw-r--r--" ]]
 then
-	echo -e "${RED}Fail:	Permisions are not set${ENDCOLOR}" 
+	echo -e "${RED}Fail:	Permisions are not set 	(PAGE 423)${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	Permisions are set 	(PAGE 423)${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	Permisions are set${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1008,10 +1008,10 @@ echo 6.1.5  Ensure permissions on /etc/gshadow are configured
 permcheck=$(stat --format="%A" /etc/gshadow)
 if [[ $permcheck != "-rw-r-----" ]]
 then
-	echo -e "${RED}Fail:	Permisions are not set${ENDCOLOR}" 
+	echo -e "${RED}Fail:	Permisions are not set 	(PAGE 424)${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	Permisions are set 	(PAGE 424)${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	Permisions are set${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1021,10 +1021,10 @@ echo 6.1.6  Ensure permissions on /etc/passwd- are configured
 permicheck=$(stat --format="%A" /etc/passwd-)
 if [[ $permicheck != "-rw-------" ]]
 then
-	echo -e "${RED}Fail:	Permisions are not set${ENDCOLOR}" 
+	echo -e "${RED}Fail:	Permisions are not set	(PAGE 425)${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	Permisions are set 	(PAGE 425)${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	Permisions are set ${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1034,10 +1034,10 @@ echo 6.1.7  Ensure permissions on /etc/shadow- are configured
 permischeck=$(stat --format="%A" /etc/shadow-)
 if [[ $permischeck != "-rw-------" ]]
 then
-	echo -e "${RED}Fail:	Permisions are not set${ENDCOLOR}" 
+	echo -e "${RED}Fail:	Permisions are not set 	(PAGE 426)${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	Permisions are set 	(PAGE 426)${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	Permisions are set${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1047,10 +1047,10 @@ echo 6.1.8  Ensure permissions on /etc/group- are configured
 permisscheck=$(stat --format="%A" /etc/group-)
 if [[ $permisscheck != "-rw-------" ]]
 then
-	echo -e "${RED}Fail:	Permisions are not set${ENDCOLOR}" 
+	echo -e "${RED}Fail:	Permisions are not set 	(PAGE 428)${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	Permisions are set 	(PAGE 428)${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	Permisions are set${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1060,10 +1060,10 @@ echo 6.1.9 Ensure permissions on /etc/gshadow- are configured
 permissicheck=$(stat --format="%A" /etc/gshadow-)
 if [[ $permissicheck != "-rw-r-----" ]]
 then
-	echo -e "${RED}Fail:	Permisions are not set${ENDCOLOR}" 
+	echo -e "${RED}Fail:	Permisions are not set 	(PAGE 429)${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	Permisions are set 	(PAGE 429)${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	Permisions are set${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1074,10 +1074,10 @@ echo 6.1.10 Ensure no world writable files exist
 echeck=$(df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -0002)
 if [[ $echeck != "" ]]
 then
-	echo -e "${RED}Fail:	world writable files exist${ENDCOLOR}" 
+	echo -e "${RED}Fail:	world writable files exist 	(PAGE 430)${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	No world writable files exist 	(PAGE 430)${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	No world writable files exist${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1087,10 +1087,10 @@ echo 6.1.11 Ensure no unowned files or directories exist
 encheck=$(df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser)
 if [[ $encheck != "" ]]
 then
-	echo -e "${RED}Fail:	unowned files or directories exist${ENDCOLOR}" 
+	echo -e "${RED}Fail:	unowned files or directories exist 	(PAGE 432)${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	No unowned files or directories exist 	(PAGE 432)${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	No unowned files or directories exist${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1100,10 +1100,10 @@ echo 6.1.12 Ensure no ungrouped files or directories exist
 enscheck=$(df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -nogroup)
 if [[ $enscheck != "" ]]
 then
-	echo -e "${RED}Fail:	ungrouped files or directories exist${ENDCOLOR}" 
+	echo -e "${RED}Fail:	ungrouped files or directories exist	(PAGE 434)${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	No ungrouped files or directories exist 	(PAGE 434)${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	No ungrouped files or directories exist ${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1122,10 +1122,10 @@ echo 6.2.1 Ensure password fields are not empty
 pcheck=$(awk -F: '($2 == "" ) { print $1 " does not have a password "}' /etc/shadow)
 if [[ $pcheck != "" ]]
 then
-	echo -e "${RED}Fail:	password feilds are empty${ENDCOLOR}" 
+	echo -e "${RED}Fail:	password feilds are empty 	(PAGE 441)${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	password feilds are not empty 	(PAGE 441)${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	password feilds are not empty${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1135,10 +1135,10 @@ echo 6.2.2 Ensure no legacy "+" entries exist in /etc/passwd
 lcheck=$(grep '^\+:' /etc/passwd)
 if [[ $lcheck != "" ]]
 then
-	echo -e "${RED}Fail:	legacy "+" entries exist in /etc/passwd${ENDCOLOR}" 
+	echo -e "${RED}Fail:	legacy "+" entries exist in /etc/passwd 	(PAGE 442)${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	no legacy "+" entries exist in /etc/passwd 	(PAGE 442)${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	no legacy "+" entries exist in /etc/passwd${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1170,10 +1170,10 @@ echo 6.2.4 Ensure no legacy "+" entries exist in /etc/shadow
 lecheck=$(grep '^\+:' /etc/shadow)
 if [[ $lecheck != "" ]]
 then
-	echo -e "${RED}Fail:	legacy "+" entries exist in /etc/shadow${ENDCOLOR}" 
+	echo -e "${RED}Fail:	legacy "+" entries exist in /etc/shadow  	(PAGE 444)${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	no legacy "+" entries exist in /etc/shadow 	(PAGE 444)${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	no legacy "+" entries exist in /etc/shadow${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1183,10 +1183,10 @@ echo 6.2.5 Ensure no legacy "+" entries exist in /etc/group
 legcheck=$(grep '^\+:' /etc/group)
 if [[ $legcheck != "" ]]
 then
-	echo -e "${RED}Fail:	legacy "+" entries exist in /etc/group${ENDCOLOR}" 
+	echo -e "${RED}Fail:	legacy "+" entries exist in /etc/group 	(PAGE 445)${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	no legacy "+" entries exist in /etc/group 	(PAGE 445)${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	no legacy "+" entries exist in /etc/group${ENDCOLOR}"
 		passno=$(($passno + 1))
 
 fi
@@ -1196,10 +1196,10 @@ echo 6.2.6 Ensure root is the only UID 0 account
 rcheck=$(awk -F: '($3 == 0) { print $1 }' /etc/passwd)
 if [[ $rcheck != "root" ]]
 then
-	echo -e "${RED}Fail:	root is the only UID 0 account${ENDCOLOR}" 
+	echo -e "${RED}Fail:	root is the only UID 0 account 	(PAGE 446)${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	root is the only UID 0 account 	(PAGE 446)${ENDCOLOR}" 
+	echo -e "${GREEN}Pass:	root is the only UID 0 account${ENDCOLOR}" 
 		passno=$(($passno + 1))
 
 fi
@@ -1500,6 +1500,9 @@ else
 echo -e "${RED}Fail:	Not all users home directories exist 	(PAGE 468)${ENDCOLOR}"
 failno=$(($failno + 1))
 fi
+
+
+
 
 
 
