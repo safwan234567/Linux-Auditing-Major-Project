@@ -142,12 +142,10 @@ echo 3.3.1 Ensure DCCP is disabled
 #3.3.1
 if ! modprobe -n -v dccp 2> /dev/null | tail -1 | grep -q 'install /bin/true'
         then
-                echo -e "${RED}Fail:	DCCP is not disabled
-                ${ENDCOLOR}"
+                echo -e "${RED}Fail:	DCCP is not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
         else
-                echo -e "${GREEN}Pass:	DCCP is disabled
-                ${ENDCOLOR}"
+                echo -e "${GREEN}Pass:	DCCP is disabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         fi
 
@@ -156,12 +154,10 @@ echo 3.3.2 Ensure SCTP is disabled
 #3.3.2
 if ! modprobe -n -v sctp 2> /dev/null | tail -1 | grep -q 'install /bin/true'
         then
-                echo -e "${RED}Fail:	SCTP is not disabled
-                ${ENDCOLOR}"
+                echo -e "${RED}Fail:	SCTP is not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
         else
-                echo -e "${GREEN}Pass:	SCTP is disabled
-                ${ENDCOLOR}"
+                echo -e "${GREEN}Pass:	SCTP is disabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         fi
 
@@ -170,12 +166,10 @@ echo 3.3.3 Ensure RDS is disabled
 #3.3.3
 if ! modprobe -n -v rds 2> /dev/null | tail -1 | grep -q 'install /bin/true'
         then
-                echo -e "${RED}Fail:	RDS is not disabled
-                ${ENDCOLOR}"
+                echo -e "${RED}Fail:	RDS is not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
         else
-                echo -e "${GREEN}Pass:	RDS is disabled
-                ${ENDCOLOR}"
+                echo -e "${GREEN}Pass:	RDS is disabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         fi
 
@@ -184,21 +178,25 @@ echo 3.3.4 Ensure TIPC is disabled
 #3.3.4
 if ! modprobe -n -v tipc 2> /dev/null | tail -1 | grep -q 'install /bin/true'
         then
-                echo -e "${RED}Fail:	TIPC is not disabled
-                ${ENDCOLOR}"
+                echo -e "${RED}Fail:	TIPC is not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
         else
-                echo -e "${GREEN}Pass:	TIPC is disabled
-                ${ENDCOLOR}"
+                echo -e "${GREEN}Pass:	TIPC is disabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         fi
 
 
 echo 3.5 Ensure wireless interfaces are disabled
 #3.5
-wirelesscheck=$(nmcli radio all)
-#unsure
-echo 3.5 Unsure how to do
+check=$(nmcli radio | awk '{print $2,4}' | grep -w "enabled")
+	if [[  -n $check  ]]
+	then
+		echo -e "${RED}Fail:	Wireless interfaces are not disabled${ENDCOLOR}"
+		failno=$(($failno + 1))
+	else
+		echo -e "${GREEN}Pass:	Wireless interfaces are disabled${ENDCOLOR}"
+		passno=$(($passno + 1))
+	fi
 
 
 echo 3.6 Disable IPv6
@@ -206,12 +204,10 @@ echo 3.6 Disable IPv6
 ipv6disable=$(grep -E "^\s*kernelopts=(\S+\s+)*ipv6\.disable=1\b\s*(\S+\s*)*$" /boot/grub2/grubenv)
         if [[ -z $ipv6disable ]]
         then
-                echo -e "${RED}Fail:	IPv6 is not disabled
-                ${ENDCOLOR}"
+                echo -e "${RED}Fail:	IPv6 is not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
         else
-                echo -e "${GREEN}Pass:	IPv6 is disabled
-                ${ENDCOLOR}"
+                echo -e "${GREEN}Pass:	IPv6 is disabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         fi
 
