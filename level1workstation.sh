@@ -476,7 +476,7 @@ broadcasticmpcheck=$(sysctl net.ipv4.icmp_echo_ignore_broadcasts)
                 echo -e "${GREEN}Pass:	Broadcast ICMP requests are ignored${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	Broadcast ICMP requests are not ignored${ENDCOLOR}"
+                echo -e "${RED}Fail:	Broadcast ICMP requests are not ignored	(PAGE 188)${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -489,7 +489,7 @@ icmpboguscheck=$(sysctl net.ipv4.icmp_ignore_bogus_error_responses)
                 echo -e "${GREEN}Pass:	Bogus ICMP responses are ignored${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	Bogus ICMP responses are not ignored${ENDCOLOR}"
+                echo -e "${RED}Fail:	Bogus ICMP responses are not ignored	(PAGE 190)${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -503,7 +503,7 @@ reversepathdfilter=$(sysctl net.ipv4.conf.default.rp_filter)
                 echo -e "${GREEN}Pass:	Reverse Path Filtering is enabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	Reverse Path Filtering is not enabled${ENDCOLOR}"
+                echo -e "${RED}Fail:	Reverse Path Filtering is not enabled	(PAGE 192)${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -530,7 +530,7 @@ routeraddd=$(sysctl net.ipv6.conf.default.accept_ra)
                 echo -e "${GREEN}Pass:	IPv6 router advertisements are not accepted${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	IPv6 router advertisements are accepted${ENDCOLOR}"
+                echo -e "${RED}Fail:	IPv6 router advertisements are accepted	(PAGE 194)${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -545,15 +545,15 @@ nftables=$(rpm -q nftables)
 iptables=$(rpm -q iptables)
         if [[ $firewalld == 'package firewalld is not installed' ]]
         then
-                echo -e "${RED}Fail:	No firewall package is installed${ENDCOLOR}"
+                echo -e "${RED}Fail:	No firewall package is installed	(PAGE 205)${ENDCOLOR}"
                 failno=$(($failno + 1))
         elif [[ $nftables == 'package nftables is not installed' ]]
         then
-                echo -e "${RED}Fail:	No firewall pacakge is installed${ENDCOLOR}"
+                echo -e "${RED}Fail:	No firewall pacakge is installed	(PAGE 205)${ENDCOLOR}"
                 failno=$(($failno + 1))
         elif [[ $iptables == 'package iptables is no installed' ]]
         then
-                echo -e "${RED}Fail:	No firewall package is installed${ENDCOLOR}"
+                echo -e "${RED}Fail:	No firewall package is installed	(PAGE 205)${ENDCOLOR}"
                 failno=$(($failno + 1))
         else
                 echo -e "${GREEN}Pass:	A firewall package is installed${ENDCOLOR}"
@@ -570,7 +570,7 @@ firewallrunning=$(firewall-cmd --state)
                 echo -e "${GREEN}Pass:	firewalld service is enabled and running${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	firewalld service is not enabled and not running${ENDCOLOR}"
+                echo -e "${RED}Fail:	firewalld service is not enabled and not running	(PAGE 208)${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -582,7 +582,7 @@ echo 3.4.2.2 Ensure nftables is not enabled
                 echo -e "${GREEN}Pass:	nftables is not enabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	nftables is enabled${ENDCOLOR}"
+                echo -e "${RED}Fail:	nftables is enabled	(PAGE 210)${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -595,19 +595,19 @@ defaultzone=$(firewall-cmd --get-default-zone)
                 echo -e "${GREEN}Pass:	Default zone is set${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	Default zone is not set${ENDCOLOR}"
+                echo -e "${RED}Fail:	Default zone is not set	(PAGE 212)${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
 
 echo 3.4.2.4 Ensure network interfaces are assigned to appropriate zone
 #3.4.2.4
-echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark and follow site policy${ENDCOLOR}"
+echo -e "${RED}Check:	Refer to CIS Linux Benchmark and follow site policy	(PAGE 213-214)${ENDCOLOR}"
 
 
 echo 3.4.2.5 Ensure unnecessary services and ports are not accepted
 #3.4.2.5
-echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark and follow site policy${ENDCOLOR}"
+echo -e "${RED}Check:	Refer to CIS Linux Benchmark and follow site policy	(PAGE 215-216)${ENDCOLOR}"
 
 
 echo 3.4.2.6 Ensure iptables is not enabled
@@ -617,7 +617,7 @@ echo 3.4.2.6 Ensure iptables is not enabled
                 echo -e "${GREEN}Pass:	iptables is not enabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	iptables is enabled${ENDCOLOR}"
+                echo -e "${RED}Fail:	iptables is enabled	(PAGE 218)${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -631,7 +631,7 @@ echo 3.4.3.1 Ensure iptables are flushed
                 passno=$(($passno + 1))
 
         else
-                echo -e "${RED}Fail:	iptables are not flushed${ENDCOLOR}"
+                echo -e "${RED}Fail:	iptables are not flushed	(PAGE 224)${ENDCOLOR}"
                 failno=$(($failno + 1))
 
         fi
@@ -646,7 +646,7 @@ tableexist=$(nft list tables)
                 passno=$(($passno + 1))
 
         else
-                echo -e "${RED}Fail:	No table exists${ENDCOLOR}"
+                echo -e "${RED}Fail:	No table exists	(PAGE 226)${ENDCOLOR}"
                 failno=$(($failno + 1))
 
         fi
@@ -662,7 +662,7 @@ if [[ `nft list ruleset | grep 'hook input' 2>/dev/null` == 'type filter hook in
                 passno=$(($passno + 1))
 
         else
-                echo -e "${RED}Fail:	base chains do not exists${ENDCOLOR}"
+                echo -e "${RED}Fail:	base chains do not exists	(PAGE 228)${ENDCOLOR}"
                 failno=$(($failno + 1))
 
         fi
@@ -675,7 +675,7 @@ ipsddr=$(nft list ruleset | awk '/hook input/,/}/' | grep 'ip sddr')
 ip6ssdr=$(nft list ruleset | awk '/hook input/,/}/' | grep 'ip6 saddr')
         if [[ -z $loaccept ]] && [[ -z $ipsddr ]] && [[ -z $ip6ssdr ]]
         then
-                echo -e "${RED}Fail:	loopback traffic is not configured${ENDCOLOR}"
+                echo -e "${RED}Fail:	loopback traffic is not configured	(PAGE 229)${ENDCOLOR}"
                 failno=$(($failno + 1))
         else
                 echo -e "${GREEN}Pass:	loopback traffic is configured${ENDCOLOR}"
@@ -691,7 +691,7 @@ outboundconf=$(nft list ruleset | awk '/hook input/,/}/' | grep -E 'ip protocol 
                 echo -e "${GREEN}Pass:	outbound and established connections are configured${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	outbound and established connections are not configured${ENDCOLOR}"
+                echo -e "${RED}Fail:	outbound and established connections are not configured	(PAGE 232)${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -703,7 +703,7 @@ if [[ `nft list ruleset | grep 'hook input' 2>/dev/null` == 'type filter hook in
                 echo -e "${GREEN}Pass:	default firewall policy is deny${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	default firewall policy is not deny${ENDCOLOR}"
+                echo -e "${RED}Fail:	default firewall policy is not deny	(PAGE 234)${ENDCOLOR}"
                 failno=$(($failno + 1))
 
         fi
@@ -716,14 +716,14 @@ echo 3.4.3.7 Ensure nftables service is eabled
                 echo -e "${GREEN}Pass:	nftables service is enabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	nftables service is not enabled${ENDCOLOR}"
+                echo -e "${RED}Fail:	nftables service is not enabled	(PAGE 235)${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
 
 echo 3.4.3.8 Ensure nftables rules are permanent
 #3.4.3.8
-echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark for more information${ENDCOLOR}"
+echo -e "${RED}Check:	Refer to CIS Linux Benchmark for more information	(PAGE 236-238)${ENDCOLOR}"
 
 
 echo 3.4.4 Configure iptables
@@ -735,22 +735,22 @@ echo 3.4.4.1.1 Ensure default deny firewall policy
                 echo -e "${GREEN}Pass:	default firewall policy is deny${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	default firewall policy is not deny${ENDCOLOR}"
+                echo -e "${RED}Fail:	default firewall policy is not deny	(PAGE 243)${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
 
 echo 3.4.4.1.2 Ensure loopback traffic is configured
 #3.4.4.1.2
-echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark for more information${ENDCOLOR}"
+echo -e "${RED}Check:	Refer to CIS Linux Benchmark for more information	(PAGE 244-245)${ENDCOLOR}"
 
 echo 3.4.4.1.3 Ensure outbound and established connections are configured
 #3.4.4.1.3
-echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark to match site policy${ENDCOLOR}"
+echo -e "${RED}Check:	Refer to CIS Linux Benchmark to match site policy	(PAGE 246-247)${ENDCOLOR}"
 
 echo 3.4.4.1.4 Ensure firewall rule exists for all open ports
 #3.4.4.1.4
-echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark for more information${ENDCOLOR}"
+echo -e "${RED}Check:	Refer to CIS Linux Benchmark for more information	(PAGE 248-249)${ENDCOLOR}"
 
 
 echo 3.4.4.2 Configure IPv6 ip6tables
@@ -764,22 +764,22 @@ outputcheck=$(ip6tables -L | grep "OUTPUT" | awk '{print $4}' | grep -w "DROP")
 		echo -e "${GREEN}Pass:	IPv6 is default deny firewall policy${ENDCOLOR}"
 		passno=$(($passno + 1))
 	else
-		echo -e "${RED}Fail:	IPv6 is not default deny firewall policy${ENDCOLOR}"
+		echo -e "${RED}Fail:	IPv6 is not default deny firewall policy	(PAGE 253)${ENDCOLOR}"
 		failno=$(($failno + 1))
 
 	fi
 
 echo 3.4.4.2.2 Ensure IPv6 loopback traffic is configured
 #3.4.4.2.2
-echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark for more information${ENDCOLOR}"
+echo -e "${RED}Check:	Refer to CIS Linux Benchmark for more information	(PAGE 254-255)${ENDCOLOR}"
 
 echo 3.4.4.2.3 Ensure IPv6 outbound and established connections are not configured
 #3.4.4.2.3
-echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark and ensure connections match with site policy${ENDCOLOR}"
+echo -e "${RED}Check:	Refer to CIS Linux Benchmark and ensure connections match with site policy	(PAGE 256-257)${ENDCOLOR}"
 
 echo 3.4.4.2.4 Ensure IPv6 firewall rules exist for all open ports
 #3.4.4.2.4
-echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark for more information${ENDCOLOR}"
+echo -e "${RED}Check:	Refer to CIS Linux Benchmark for more information	(PAGE 258-260)${ENDCOLOR}"
 echo
 #----------------------------
 #CHAP 4
