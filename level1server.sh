@@ -21,12 +21,12 @@ echo
 echo "1.1.1.1: Ensure mounting of cramfs filesystems is disabled" 
 if [[ `modprobe -n -v cramfs` != "install /bin/true" ]]
         then
-            	echo -e "${RED}Fail:	Cramfs is not disabled${ENDCOLOR}"
+            	echo -e "${RED}Fail:	Cramfs is not disabled (PAGE 22)${ENDCOLOR}"
                 failno=$(($failno + 1))
 
 elif [[ -n `lsmod | grep cramfs` ]]
                 then
-                    	echo -e "${RED}Fail:	Cramfs is not disabled${ENDCOLOR}"
+                    	echo -e "${RED}Fail:	Cramfs is not disabled (PAGE 22)${ENDCOLOR}"
                         failno=$(($failno + 1))
 
 else
@@ -38,12 +38,12 @@ echo "1.1.1.3: Ensure mounting of squashfs filesystems is disabled"
 if [[ `modprobe -n -v squashfs` != "install /bin/true" ]]
  
        then
-           	echo -e "${RED}Fail:	squashfs filesystems is not disabled${ENDCOLOR}"
+           	echo -e "${RED}Fail:	squashfs filesystems is not disabled (PAGE 24)${ENDCOLOR}"
                 failno=$(($failno + 1))
 
 elif [[ -n `lsmod | grep squashfs` ]]
                 then
-                        echo -e "${RED}Fail:	squashfs filesystems is not disabled${ENDCOLOR}"
+                        echo -e "${RED}Fail:	squashfs filesystems is not disabled (PAGE 24)${ENDCOLOR}"
                         failno=$(($failno + 1))
 
 else
@@ -54,12 +54,12 @@ fi #something went wrong here
 echo "1.1.1.4 Ensure mounting of udf filesystems is disabled"
 if [[ `modprobe -n -v udf` != "install /bin/true" ]]
         then
-           	echo -e "${RED}Fail:	udf filesystems are not disabled${ENDCOLOR}"
+           	echo -e "${RED}Fail:	udf filesystems are not disabled (PAGE 28)${ENDCOLOR}"
                 failno=$(($failno + 1))
 
 elif [[ -n `lsmod | grep udf` ]]
                 then
-                    	echo -e  "${RED}Fail:	udf filesystems are not disabled${ENDCOLOR}"
+                    	echo -e  "${RED}Fail:	udf filesystems are not disabled (PAGE 28)${ENDCOLOR}"
                         failno=$(($failno + 1))
 
 else
@@ -70,11 +70,11 @@ fi #something went wrong here
 echo "1.1.2 Ensure /tmp is configured"
 if [[ -z `mount | grep -E '\s/tmp\s'` ]]
         then
-            	echo -e "${RED}Fail:	/tmp is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/tmp is not configured properly (PAGE 30)${ENDCOLOR}"
                 failno=$(($failno + 1))
 elif [[ -z `grep -E '\s/tmp\s' /etc/fstab | grep -E -v '^\s*#'` ]]
         then
-            	echo -e "${RED}Fail:	/tmp is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/tmp is not configured properly (PAGE 30)${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
     	echo -e "${GREEN}Pass:	/tmp is configured properly${ENDCOLOR}"
@@ -84,7 +84,7 @@ fi
 echo "1.1.3 Ensure nodev option set on /tmp partition" 
 if [[ -n `mount | grep -E '\s/tmp\s' | grep -v nodev` ]]
         then 
-                echo -e "${RED}Fail:	/tmp is not configured properly${ENDCOLOR}"
+                echo -e "${RED}Fail:	/tmp is not configured properly (PAGE 33)${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
     	echo -e "${GREEN}Pass:	/tmp is configured properly${ENDCOLOR}"
@@ -94,7 +94,7 @@ fi
 echo "1.1.4 Ensure nosuid option set on /tmp partition"
 if [[ -n `mount | grep -E '\s/tmp\s' | grep -v nosuid` ]]
         then
-            	echo -e "${RED}Fail:	/tmp is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/tmp is not configured properly (PAGE 35)${ENDCOLOR}"
                 failno=$(($failno + 1))
 else 
      	echo -e "${GREEN}Pass:	/tmp is configured properly${ENDCOLOR}"
@@ -104,7 +104,7 @@ fi
 echo "1.1.5 Ensure noexec option set on /tmp partition "
 if [[ -n `mount | grep -E '\s/tmp\s' | grep -v noexec` ]]
         then
-            	echo -e "${RED}Fail:	/tmp is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/tmp is not configured properly (PAGE 37)${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
     	echo "${GREEN}Pass:	/tmp is configured properly${ENDCOLOR}"
@@ -114,7 +114,7 @@ fi
 echo "1.1.8 Ensure nodev option set on /var/tmp partition"
 if [[ -n `mount | grep -E '\s/var/tmp\s' | grep -v nodev` ]]
         then
-            	echo -e "${RED}Fail:	/var/tmp is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/var/tmp is not configured properly (PAGE 43)${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
         echo -e "${GREEN}Pass:	/var/tmp is configured properly${ENDCOLOR}"
@@ -124,7 +124,7 @@ fi
 echo "1.1.9 Ensure nosuid option set on /var/tmp partition "
 if [[ -n `mount | grep -E '\s/var/tmp\s' | grep -v nosuid` ]]
         then
-            	echo -e "${RED}Fail:	/var/tmp is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/var/tmp is not configured properly (PAGE 44)${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
     	echo "${GREEN}Pass:	/var/tmp is configured properly${ENDCOLOR}"
@@ -134,7 +134,7 @@ fi
 echo "1.1.10 Ensure noexec option set on /var/tmp partition "
 if [[ -n `mount | grep -E '\s/var/tmp\s' | grep -v noexec` ]]
         then
-            	echo -e "${RED}Fail:	/var/tmp is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/var/tmp is not configured properly (PAGE 45)${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
     	echo -e "${GREEN}Pass:	/var/tmp is configured properly${ENDCOLOR}"
@@ -144,7 +144,7 @@ fi
 echo "1.1.14 Ensure nodev option set on /home partition"
 if [[ -n `mount | grep -E '\s/home\s' | grep -v nodev` ]]
         then
-            	echo -e "${RED}Fail:	/home is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/home is not configured properly (PAGE 52)${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
     	echo -e "${GREEN}Pass:	/home is configured properly${ENDCOLOR}"
@@ -154,7 +154,7 @@ fi
 echo "1.1.15 Ensure nodev option set on /dev/shm partition"
 if [[ -n `mount | grep -E '\s/dev/shm\s' | grep -v nodev` ]]
         then
-            	echo -e "${RED}Fail:	/dev/shm is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/dev/shm is not configured properly (PAGE 53)${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
     	echo -e "${GREEN}Pass:	1.1.15 is configured properly${ENDCOLOR}"
@@ -164,7 +164,7 @@ fi
 echo "1.1.16 Ensure nosuid option set on /dev/shm partition"
 if [[ -n `mount | grep -E '\s/dev/shm\s' | grep -v nosuid` ]]
         then
-            	echo -e "${RED}Fail:	/dev/shm is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/dev/shm is not configured properly (PAGE 55)${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
     	echo -e "${GREEN}Pass:	/dev/shm is configured properly${ENDCOLOR}"
@@ -174,7 +174,7 @@ fi
 echo "1.1.17 Ensure noexec option set on /dev/shm partition"
 if [[ -n `mount | grep -E '\s/dev/shm\s' | grep -v noexec` ]]
         then
-            	echo -e "${RED}Fail:	/dev/shm is not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	/dev/shm is not configured properly (PAGE 57)${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
     	echo -e "${GREEN}Pass:	1.1.17 is configured properly${ENDCOLOR}"
@@ -185,7 +185,7 @@ echo "1.1.21 Ensure sticky bit is set on all world-writable directories"
 if [[ -n `df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}'
  -xdev -type d \( -perm -0002 -a ! -perm -1000 \) 2>/dev/null` ]]
         then
-            	echo -e "${RED}Fail:	Sticky bit is not set on all world-writable diectories${ENDCOLOR}"
+            	echo -e "${RED}Fail:	Sticky bit is not set on all world-writable diectories (PAGE 62)${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
     	echo -e "${GREEN}Pass:	Sticky bit is configured properly${ENDCOLOR}"
@@ -195,22 +195,22 @@ fi
 echo "1.1.22 Disable Automounting "
 if [[ `systemctl is-enabled autofs 2>/dev/null` == 'enabled' ]]
         then
-            	echo -e "${RED}Fail:	Automounting is not disabled${ENDCOLOR}"
+            	echo -e "${RED}Fail:	Automounting is not disabled (PAGE 63)${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
     	echo -e "${GREEN}Pass:	Automounting is configured properly${ENDCOLOR}"
         passno=$(($passno + 1))
 fi
 
-echo "1.1.23 Disable USB Storage "
+echo "1.1.23 Disable USB Storage"
 if [[ `modprobe -n -v usb-storage` != "install /bin/true" ]]
         then
-            	echo -e "${RED}Fail:	USB Storage is not disabled${ENDCOLOR}"
+            	echo -e "${RED}Fail:	USB Storage is not disabled (PAGE 65)${ENDCOLOR}"
                 failno=$(($failno + 1))
 
 elif [[ -n `lsmod | grep usb-storage` ]]
                 then
-                    	echo -e "${RED}Fail:	USB Storage is not disabled${ENDCOLOR}"
+                    	echo -e "${RED}Fail:	USB Storage is not disabled (PAGE 65)${ENDCOLOR}"
                         failno=$(($failno + 1))
 
 else
@@ -219,13 +219,13 @@ else
 fi #Having issues with this code
 
 echo "1.2.1 Ensure GPG keys are configured"
-echo -e "${RED}CHECK:	Verify GPG keys are configured correctly for your packet manager${ENDCOLOR}"
+echo -e "${RED}CHECK:	Verify GPG keys are configured correctly for your packet manager (PAGE 68)${ENDCOLOR}"
 rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
 
 echo "1.2.2 Ensure gpgcheck is globally activated"
 if [[ `grep ^gpgcheck /etc/yum.conf` != 'gpgcheck=1' ]]
         then
-            	echo -e "${RED}Fail:	gpgcheck is not globally activated ${ENDCOLOR}"
+            	echo -e "${RED}Fail:	gpgcheck is not globally activated (PAGE 69)${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
         echo -e "${GREEN}Pass:	gpgcheck is configured correctly${ENDCOLOR}"
@@ -233,13 +233,13 @@ else
 fi
 
 echo "1.2.3 Ensure package manager repositories are configured"
-echo -e "${RED}CHECK:	Verify that repositories are configured correctly${ENDCOLOR}"
+echo -e "${RED}CHECK:	Verify that repositories are configured correctly (PAGE 70)${ENDCOLOR}"
 dnf repolist
 
 echo "1.3.1 Ensure sudo is installed"
 if [[ -z `rpm -q sudo` ]]
         then
-                echo -e "${RED}Fail:	sudo is not installed${ENDCOLOR}"
+                echo -e "${RED}Fail:	sudo is not installed (PAGE 72)${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
     	echo -e "${GREEN}Pass:	sudo is installed${ENDCOLOR}"
@@ -249,7 +249,7 @@ fi
 echo "1.3.2 Ensure sudo commands use pty"
 if [[ `grep -Ei '^\s*Deafults\s+(\[^#]+,\s*)?use pty' /etc/sudoers /etc/sudoers.d/*` != 'Defaults use_pty' ]] 2> /dev/null
         then
-            	echo -e "${RED}Fail:	sudo commands are not configured properly${ENDCOLOR}"
+            	echo -e "${RED}Fail:	sudo commands are not configured properly (PAGE 74)${ENDCOLOR}"
                 failno=$(($failno + 1))
 else
     	echo -e "${GREEN}Pass:	sudo commands are configured properly${ENDCOLOR}"
@@ -262,7 +262,7 @@ if [[ -f `grep -Ei '^\s*Defaults\s+([^#]+,\s*)?logfile=' /etc/sudoers /etc/sudoe
             	echo -e "${GREEN}Pass:	sudo log file exists${ENDCOLOR}"
                 passno=$(($passno + 1))
 else
-    	echo -e "${RED}Fail:	sudo log file does not exist${ENDCOLOR}"
+    	echo -e "${RED}Fail:	sudo log file does not exist (PAGE 76)${ENDCOLOR}"
         failno=$(($failno + 1))
 fi
 echo END OF CHAPTER 1
@@ -429,7 +429,7 @@ ipv6allforwardcheck=$(sysctl net.ipv6.conf.all.forwarding)
                 echo -e "${GREEN}Pass:	IP forwarding is disabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	IP forwarding is not disabled	(PAGE 173)${ENDCOLOR}"
+                echo -e "${RED}Fail:	IP forwarding is not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -443,7 +443,7 @@ ipv4defaultredirectcheck=$(sysctl net.ipv4.conf.default.send_redirects)
                 echo -e "${GREEN}Pass:	Packet redirect sending is disabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	Packet redirect sending is not disabled	(PAGE 175)${ENDCOLOR}"
+                echo -e "${RED}Fail:	Packet redirect sending is not disabled${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -460,7 +460,7 @@ ipv6defaultroutecheck=$(sysctl net.ipv6.conf.default.accept_source_route)
                 echo -e "${GREEN}Pass:	Source routed packets are not accepted${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	Source routed packets are accepted	(PAGE 179)${ENDCOLOR}"
+                echo -e "${RED}Fail:	Source routed packets are accepted${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -477,7 +477,7 @@ ipv6icmprdcheck=$(sysctl net.ipv6.conf.default.accept_redirects)
                 echo -e "${GREEN}Pass:	ICMP redirects are not accepted${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	ICMP redirects are accepted	(PAGE 182)${ENDCOLOR}"
+                echo -e "${RED}Fail:	ICMP redirects are accepted${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -491,7 +491,7 @@ securedicmpcheck=$(sysctl net.ipv4.conf.default.secure_redirects)
                 echo -e "${GREEN}Pass:	Secure ICMP redirects are not accepted${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	Secure ICMP redirects are accepted	(PAGE 184)${ENDCOLOR}"
+                echo -e "${RED}Fail:	Secure ICMP redirects are accepted${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -505,7 +505,7 @@ packetlogdcheck=$(sysctl net.ipv4.conf.default.log_martians)
                 echo -e "${GREEN}Pass:	Suspicious packets are logged${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	Suspicious packets are not logged	(PAGE 186)${ENDCOLOR}"
+                echo -e "${RED}Fail:	Suspicious packets are not logged${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -518,7 +518,7 @@ broadcasticmpcheck=$(sysctl net.ipv4.icmp_echo_ignore_broadcasts)
                 echo -e "${GREEN}Pass:	Broadcast ICMP requests are ignored${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	Broadcast ICMP requests are not ignored	(PAGE 188)${ENDCOLOR}"
+                echo -e "${RED}Fail:	Broadcast ICMP requests are not ignored${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -531,7 +531,7 @@ icmpboguscheck=$(sysctl net.ipv4.icmp_ignore_bogus_error_responses)
                 echo -e "${GREEN}Pass:	Bogus ICMP responses are ignored${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	Bogus ICMP responses are not ignored	(PAGE 190)${ENDCOLOR}"
+                echo -e "${RED}Fail:	Bogus ICMP responses are not ignored${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -545,7 +545,7 @@ reversepathdfilter=$(sysctl net.ipv4.conf.default.rp_filter)
                 echo -e "${GREEN}Pass:	Reverse Path Filtering is enabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	Reverse Path Filtering is not enabled	(PAGE 192)${ENDCOLOR}"
+                echo -e "${RED}Fail:	Reverse Path Filtering is not enabled${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -558,7 +558,7 @@ syncookies=$(sysctl net.ipv4.tcp_syncookies)
                 echo -e "${GREEN}Pass:	TCP SYN Cookies is enabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	TCP SYN Cookies is not enabled	(PAGE 194)${ENDCOLOR}"
+                echo -e "${RED}Fail:	TCP SYN Cookies is not enabled${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -572,7 +572,7 @@ routeraddd=$(sysctl net.ipv6.conf.default.accept_ra)
                 echo -e "${GREEN}Pass:	IPv6 router advertisements are not accepted${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	IPv6 router advertisements are accepted	(PAGE 196)${ENDCOLOR}"
+                echo -e "${RED}Fail:	IPv6 router advertisements are accepted${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -587,15 +587,15 @@ nftables=$(rpm -q nftables)
 iptables=$(rpm -q iptables)
         if [[ $firewalld == 'package firewalld is not installed' ]]
         then
-                echo -e "${RED}Fail:	No firewall package is installed	(PAGE 205)${ENDCOLOR}"
+                echo -e "${RED}Fail:	No firewall package is installed${ENDCOLOR}"
                 failno=$(($failno + 1))
         elif [[ $nftables == 'package nftables is not installed' ]]
         then
-                echo -e "${RED}Fail:	No firewall pacakge is installed	(PAGE 205)${ENDCOLOR}"
+                echo -e "${RED}Fail:	No firewall pacakge is installed${ENDCOLOR}"
                 failno=$(($failno + 1))
         elif [[ $iptables == 'package iptables is no installed' ]]
         then
-                echo -e "${RED}Fail:	No firewall package is installed	(PAGE 205)${ENDCOLOR}"
+                echo -e "${RED}Fail:	No firewall package is installed${ENDCOLOR}"
                 failno=$(($failno + 1))
         else
                 echo -e "${GREEN}Pass:	A firewall package is installed${ENDCOLOR}"
@@ -612,7 +612,7 @@ firewallrunning=$(firewall-cmd --state)
                 echo -e "${GREEN}Pass:	firewalld service is enabled and running${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	firewalld service is not enabled and not running	(PAGE 208)${ENDCOLOR}"
+                echo -e "${RED}Fail:	firewalld service is not enabled and not running${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -624,7 +624,7 @@ echo 3.4.2.2 Ensure nftables is not enabled
                 echo -e "${GREEN}Pass:	nftables is not enabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	nftables is enabled	(PAGE 210)${ENDCOLOR}"
+                echo -e "${RED}Fail:	nftables is enabled${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -637,19 +637,19 @@ defaultzone=$(firewall-cmd --get-default-zone)
                 echo -e "${GREEN}Pass:	Default zone is set${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	Default zone is not set	(PAGE 212)${ENDCOLOR}"
+                echo -e "${RED}Fail:	Default zone is not set${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
 
 echo 3.4.2.4 Ensure network interfaces are assigned to appropriate zone
 #3.4.2.4
-echo -e "${RED}Check:	Refer to CIS Linux Benchmark and follow site policy	(PAGE 213-214)${ENDCOLOR}"
+echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark and follow site policy${ENDCOLOR}"
 
 
 echo 3.4.2.5 Ensure unnecessary services and ports are not accepted
 #3.4.2.5
-echo -e "${RED}Check:	Refer to CIS Linux Benchmark and follow site policy	(PAGE 215-216)${ENDCOLOR}"
+echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark and follow site policy${ENDCOLOR}"
 
 
 echo 3.4.2.6 Ensure iptables is not enabled
@@ -659,7 +659,7 @@ echo 3.4.2.6 Ensure iptables is not enabled
                 echo -e "${GREEN}Pass:	iptables is not enabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	iptables is enabled	(PAGE 218)${ENDCOLOR}"
+                echo -e "${RED}Fail:	iptables is enabled${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -673,7 +673,7 @@ echo 3.4.3.1 Ensure iptables are flushed
                 passno=$(($passno + 1))
 
         else
-                echo -e "${RED}Fail:	iptables are not flushed	(PAGE 224)${ENDCOLOR}"
+                echo -e "${RED}Fail:	iptables are not flushed${ENDCOLOR}"
                 failno=$(($failno + 1))
 
         fi
@@ -688,7 +688,7 @@ tableexist=$(nft list tables)
                 passno=$(($passno + 1))
 
         else
-                echo -e "${RED}Fail:	No table exists	(PAGE 226)${ENDCOLOR}"
+                echo -e "${RED}Fail:	No table exists${ENDCOLOR}"
                 failno=$(($failno + 1))
 
         fi
@@ -704,7 +704,7 @@ if [[ `nft list ruleset | grep 'hook input' 2>/dev/null` == 'type filter hook in
                 passno=$(($passno + 1))
 
         else
-                echo -e "${RED}Fail:	base chains do not exists	(PAGE 228)${ENDCOLOR}"
+                echo -e "${RED}Fail:	base chains do not exists${ENDCOLOR}"
                 failno=$(($failno + 1))
 
         fi
@@ -717,7 +717,7 @@ ipsddr=$(nft list ruleset | awk '/hook input/,/}/' | grep 'ip sddr')
 ip6ssdr=$(nft list ruleset | awk '/hook input/,/}/' | grep 'ip6 saddr')
         if [[ -z $loaccept ]] && [[ -z $ipsddr ]] && [[ -z $ip6ssdr ]]
         then
-                echo -e "${RED}Fail:	loopback traffic is not configured	(PAGE 230)${ENDCOLOR}"
+                echo -e "${RED}Fail:	loopback traffic is not configured${ENDCOLOR}"
                 failno=$(($failno + 1))
         else
                 echo -e "${GREEN}Pass:	loopback traffic is configured${ENDCOLOR}"
@@ -733,7 +733,7 @@ outboundconf=$(nft list ruleset | awk '/hook input/,/}/' | grep -E 'ip protocol 
                 echo -e "${GREEN}Pass:	outbound and established connections are configured${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	outbound and established connections are not configured	(PAGE 232)${ENDCOLOR}"
+                echo -e "${RED}Fail:	outbound and established connections are not configured${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
@@ -745,7 +745,7 @@ if [[ `nft list ruleset | grep 'hook input' 2>/dev/null` == 'type filter hook in
                 echo -e "${GREEN}Pass:	default firewall policy is deny${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	default firewall policy is not deny	(PAGE 234)${ENDCOLOR}"
+                echo -e "${RED}Fail:	default firewall policy is not deny${ENDCOLOR}"
                 failno=$(($failno + 1))
 
         fi
@@ -758,14 +758,14 @@ echo 3.4.3.7 Ensure nftables service is eabled
                 echo -e "${GREEN}Pass:	nftables service is enabled${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	nftables service is not enabled	(PAGE 235)${ENDCOLOR}"
+                echo -e "${RED}Fail:	nftables service is not enabled${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
 
 echo 3.4.3.8 Ensure nftables rules are permanent
 #3.4.3.8
-echo -e "${RED}Check:	Refer to CIS Linux Benchmark for more information	(PAGE 236-238)${ENDCOLOR}"
+echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark for more information${ENDCOLOR}"
 
 
 echo 3.4.4 Configure iptables
@@ -777,22 +777,22 @@ echo 3.4.4.1.1 Ensure default deny firewall policy
                 echo -e "${GREEN}Pass:	default firewall policy is deny${ENDCOLOR}"
                 passno=$(($passno + 1))
         else
-                echo -e "${RED}Fail:	default firewall policy is not deny	(PAGE 243)${ENDCOLOR}"
+                echo -e "${RED}Fail:	default firewall policy is not deny${ENDCOLOR}"
                 failno=$(($failno + 1))
         fi
 
 
 echo 3.4.4.1.2 Ensure loopback traffic is configured
 #3.4.4.1.2
-echo -e "${RED}Check:	Refer to CIS Linux Benchmark for more information	(PAGE 245)${ENDCOLOR}"
+echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark for more information${ENDCOLOR}"
 
 echo 3.4.4.1.3 Ensure outbound and established connections are configured
 #3.4.4.1.3
-echo -e "${RED}Check:	Refer to CIS Linux Benchmark to match site policy	(PAGE 247)${ENDCOLOR}"
+echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark to match site policy${ENDCOLOR}"
 
 echo 3.4.4.1.4 Ensure firewall rule exists for all open ports
 #3.4.4.1.4
-echo -e "${RED}Check:	Refer to CIS Linux Benchmark for more information	(PAGE 249)${ENDCOLOR}"
+echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark for more information${ENDCOLOR}"
 
 
 echo 3.4.4.2 Configure IPv6 ip6tables
@@ -806,29 +806,29 @@ outputcheck=$(ip6tables -L | grep "OUTPUT" | awk '{print $4}' | grep -w "DROP")
 		echo -e "${GREEN}Pass:	IPv6 is default deny firewall policy${ENDCOLOR}"
 		passno=$(($passno + 1))
 	else
-		echo -e "${RED}Fail:	IPv6 is not default deny firewall policy	(PAGE 253)${ENDCOLOR}"
+		echo -e "${RED}Fail:	IPv6 is not default deny firewall policy${ENDCOLOR}"
 		failno=$(($failno + 1))
 
 	fi
 
 echo 3.4.4.2.2 Ensure IPv6 loopback traffic is configured
 #3.4.4.2.2
-echo -e "${RED}Check:	Refer to CIS Linux Benchmark for more information	(PAGE 254-255)${ENDCOLOR}"
+echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark for more information${ENDCOLOR}"
 
 echo 3.4.4.2.3 Ensure IPv6 outbound and established connections are not configured
 #3.4.4.2.3
-echo -e "${RED}Check:	Refer to CIS Linux Benchmark and ensure connections match with site policy	(PAGE 256-257)${ENDCOLOR}"
+echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark and ensure connections match with site policy${ENDCOLOR}"
 
 echo 3.4.4.2.4 Ensure IPv6 firewall rules exist for all open ports
 #3.4.4.2.4
-echo -e "${RED}Check:	Refer to CIS Linux Benchmark for more information	(PAGE 258-259${ENDCOLOR}"
+echo -e "${RED}ALERT:	Refer to CIS Linux Benchmark for more information${ENDCOLOR}"
 
 echo 3.5 Ensure wireless interfaces are disabled
 #3.5
 check=$(nmcli radio | awk '{print $2,4}' | grep -w "enabled")
 	if [[  -n $check  ]]
 	then
-		echo -e "${RED}Fail:	Wireless interfaces are not disabled	(PAGE 262)${ENDCOLOR}"
+		echo -e "${RED}Fail:	Wireless interfaces are not disabled${ENDCOLOR}"
 		failno=$(($failno + 1))
 	else
 		echo -e "${GREEN}Pass:	Wireless interfaces are disabled${ENDCOLOR}"
