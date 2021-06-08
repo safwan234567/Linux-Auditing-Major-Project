@@ -630,10 +630,10 @@ echo 6.1.1 Audit system permissions
 bashcheck=$(rpm -qf /bin/bash)
 if [[ $bashcheck != 'bash-4.1.2-29.el6.x86_64 is not isntalled' ]]
 then
-	echo -e "${RED}Fail:	bash-4.1.2-29.el6.x86_64 is installed ${ENDCOLOR}" 
+	echo -e "${RED}Fail:	bash-4.1.2-29.el6.x86_64 is installed 	(PAGE 418)${ENDCOLOR}" 
 	failno=$(($failno + 1))
 else 
-	echo -e "${GREEN}Pass:	bash-4.1.2-29.el6.x86_64 is not installed 	(PAGE 418)${ENDCOLOR}"
+	echo -e "${GREEN}Pass:	bash-4.1.2-29.el6.x86_64 is not installed ${ENDCOLOR}"
 	passno=$(($passno + 1))
 fi
 	
