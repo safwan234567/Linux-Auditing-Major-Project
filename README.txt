@@ -18,7 +18,7 @@ FOR FULL PACKAGE:
 After downloading, go to the directory of AuditThing and use the following command:
 `chmod u+x fullpackage.sh`
 
-Next, run the script with `./fullpackage.sh`
+Next, run the script with `./AuditThing.sh`
 
 Next, choose your machine configuration from the options and press enter
 (What each configuration is for is explained in the official website)
@@ -42,6 +42,8 @@ Using LibreOffice Calc or any other application that allows you to open csv file
 by going to file>open>latestresult.csv
 
 You can also view all the results of all the audits conducted on your machine by opening all_audits.csv in LibreOffice Calc
+
+For failed audits, the page number is shown so you can refer to the Linux CIS CentOS 8 Benchmark to remediate them.
                                              
                                              
                                              
