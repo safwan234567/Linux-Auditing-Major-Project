@@ -16,9 +16,9 @@ How to use Audit Thing
 
 FOR FULL PACKAGE:
 After downloading, go to the directory of AuditThing and use the following command:
-`chmod u+x fullpackage.sh`
+`chmod u+x AuditThing`
 
-Next, run the script with `./AuditThing.sh`
+Next, run the script with `./AuditThing`
 
 Next, choose your machine configuration from the options and press enter
 (What each configuration is for is explained in the official website)
